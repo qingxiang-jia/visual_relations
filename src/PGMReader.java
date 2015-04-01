@@ -90,10 +90,4 @@ public class PGMReader
         }
         return null;
     }
-
-    // quick test
-    public static void main(String args[])
-    {
-        int[][] img = PGMReader.read("/Users/lee/Dropbox/VIC/assn3/ass3-labeled.pgm");
-    }
 }
