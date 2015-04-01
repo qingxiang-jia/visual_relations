@@ -79,7 +79,7 @@ public class BuildingFinder
             /** lower left **/
             g.drawOval(cMin[i]-r, rMax[i]-r, 2 * r, 2 * r);
             /** lower right **/
-            g.drawOval(cMax[i]-r, rMax[i]-r, 2 * r, 2 * r);
+            g.drawOval(cMax[i] - r, rMax[i] - r, 2 * r, 2 * r);
         }
         ShowImg.show(image);
     }
@@ -115,6 +115,45 @@ public class BuildingFinder
         return area;
     }
 
+    /**
+     * Computes centroid for each building. In this case, x_bar = (sum(x_coords)/area);
+     * y_bar = (sum(y_coords)/area)/
+     * @param img
+     * @param MBRCoordinates
+     * @param area
+     * @return Centroids of all buildings: int[building_id][r, c]
+     */
+    public static int[][] computeCentroid(int[][] img, int[][] MBRCoordinates, int[] area)
+    {
+        int[][] centroids = new int[MBRCoordinates[0].length][];
+        int[] rMin = MBRCoordinates[0], rMax = MBRCoordinates[1], cMin = MBRCoordinates[2], cMax = MBRCoordinates[3];
+        /** for each building, compute centroid **/
+        for (int i = 0; i < MBRCoordinates[0].length; i++) {
+            int sumX = 0, sumY = 0;
+            for (int r = rMin[i]; r < rMax[i]; r++)
+                for (int c = cMin[i]; c < cMax[i]; c++) {
+                    if (img[r][c] == i + 1) {
+                        sumX += c;
+                        sumY += r;
+                    }
+                }
+            centroids[i] = new int[]{sumY/area[i], sumX/area[i]};
+        }
+        return centroids;
+    }
+
+    public static void displayCentroid(BufferedImage image, int[][] centroids)
+    {
+        Graphics2D g = image.createGraphics();
+        g.setColor(Color.RED);
+        int r = 2;
+        /** for each building, draw centroid **/
+        for (int i = 0; i < centroids.length; i++) {
+            g.drawOval(centroids[i][1] - r, centroids[i][0] - r, 2 * r, 2 * r);
+        }
+        ShowImg.show(image);
+    }
+
     public static void main(String[] args)
     {
         int[][] img = PGMReader.read("ass3-labeled.pgm");
@@ -124,6 +163,9 @@ public class BuildingFinder
 //        BuildingFinder.displayMBR(ImageReader.read("ass3-campus.png"), MBRCoordinates);
 
         int area[] = BuildingFinder.computeArea(img, MBRCoordinates);
-        BuildingFinder.displayArea(ImageReader.read("ass3-campus.png"), MBRCoordinates, area);
+//        BuildingFinder.displayArea(ImageReader.read("ass3-campus.png"), MBRCoordinates, area);
+
+        int[][] centroids = BuildingFinder.computeCentroid(img, MBRCoordinates, area);
+        BuildingFinder.displayCentroid(ImageReader.read("ass3-campus.png"), centroids);
     }
 }
