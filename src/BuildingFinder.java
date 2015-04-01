@@ -75,18 +75,55 @@ public class BuildingFinder
             /** upper left **/
             g.drawOval(cMin[i]-r, rMin[i]-r, 2 * r, 2 * r);
             /** upper right **/
-            g.drawOval(cMax[i]-r, rMin[i]-r, 2*r, 2*r);
+            g.drawOval(cMax[i]-r, rMin[i]-r, 2 * r, 2 * r);
             /** lower left **/
-            g.drawOval(cMin[i]-r, rMax[i]-r, 2*r, 2*r);
+            g.drawOval(cMin[i]-r, rMax[i]-r, 2 * r, 2 * r);
             /** lower right **/
-            g.drawOval(cMax[i]-r, rMax[i]-r, 2*r, 2*r);
+            g.drawOval(cMax[i]-r, rMax[i]-r, 2 * r, 2 * r);
         }
         ShowImg.show(image);
     }
 
+    public static void displayArea(BufferedImage image, int[][] MBRCoordinates, int[] area)
+    {
+        int[] rMin = MBRCoordinates[0], rMax = MBRCoordinates[1], cMin = MBRCoordinates[2], cMax = MBRCoordinates[3];
+        Graphics2D g = image.createGraphics();
+        g.setColor(Color.RED);
+        int r = 2;
+        /** for each building, draw MBR **/
+        for (int i = 0; i < MBRCoordinates[0].length; i++) {
+            int row = (rMin[i] + rMax[i]) / 2;
+            int col = (cMin[i] + cMax[i]) / 2;
+            g.drawString(Integer.toString(area[i]), col, row);
+        }
+        ShowImg.show(image);
+    }
+
+    public static int[] computeArea(int[][] img, int[][] MBRCoordinates)
+    {
+        int[] rMin = MBRCoordinates[0], rMax = MBRCoordinates[1], cMin = MBRCoordinates[2], cMax = MBRCoordinates[3];
+        /** for each building, compute area **/
+        int[] area = new int[MBRCoordinates[0].length];
+        for (int i = 0; i < MBRCoordinates[0].length; i++) {
+            int a = 0;
+            for (int r = rMin[i]; r < rMax[i]; r++)
+                for (int c = cMin[i]; c < cMax[i]; c++)
+                    if (img[r][c] == i + 1)
+                        a++;
+            area[i] = a;
+        }
+        return area;
+    }
+
     public static void main(String[] args)
     {
-        int[][] MBRCoordinates = BuildingFinder.findMBR(PGMReader.read("ass3-labeled.pgm"), 27);
-        BuildingFinder.displayMBR(ImageReader.read("ass3-campus.png"), MBRCoordinates);
+        int[][] img = PGMReader.read("ass3-labeled.pgm");
+
+        int[][] MBRCoordinates = BuildingFinder.findMBR(img, 27);
+
+//        BuildingFinder.displayMBR(ImageReader.read("ass3-campus.png"), MBRCoordinates);
+
+        int area[] = BuildingFinder.computeArea(img, MBRCoordinates);
+        BuildingFinder.displayArea(ImageReader.read("ass3-campus.png"), MBRCoordinates, area);
     }
 }
