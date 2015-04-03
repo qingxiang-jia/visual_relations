@@ -174,10 +174,10 @@ public class BuildingFinder
 //        BuildingFinder.displayMBR(ImageReader.read("ass3-campus.png"), MBRCoordinates);
 
         int area[] = BuildingFinder.computeArea(img, MBRCoordinates);
-//        BuildingFinder.displayArea(ImageReader.read("ass3-campus.png"), MBRCoordinates, area);
+        BuildingFinder.displayArea(ImageReader.read("ass3-campus.png"), MBRCoordinates, area);
 
-        int[][] centroids = BuildingFinder.computeCentroid(img, MBRCoordinates, area);
+//        int[][] centroids = BuildingFinder.computeCentroid(img, MBRCoordinates, area);
 //        BuildingFinder.displayCentroid(ImageReader.read("ass3-campus.png"), centroids);
-        BuildingFinder.displayBuildingID(ImageReader.read("ass3-campus.png"), centroids);
+//        BuildingFinder.displayBuildingID(ImageReader.read("ass3-campus.png"), centroids);
     }
 }
