@@ -154,6 +154,17 @@ public class BuildingFinder
         ShowImg.show(image);
     }
 
+    public static void displayBuildingID(BufferedImage image, int[][] centroids)
+    {
+        Graphics2D g = image.createGraphics();
+        g.setColor(Color.RED);
+        /** for each building, display the its corresponding ID **/
+        for (int i = 0; i < centroids.length; i++) {
+            g.drawString(Integer.toString(i), centroids[i][1], centroids[i][0]);
+        }
+        ShowImg.show(image);
+    }
+
     public static void main(String[] args)
     {
         int[][] img = PGMReader.read("ass3-labeled.pgm");
@@ -166,6 +177,7 @@ public class BuildingFinder
 //        BuildingFinder.displayArea(ImageReader.read("ass3-campus.png"), MBRCoordinates, area);
 
         int[][] centroids = BuildingFinder.computeCentroid(img, MBRCoordinates, area);
-        BuildingFinder.displayCentroid(ImageReader.read("ass3-campus.png"), centroids);
+//        BuildingFinder.displayCentroid(ImageReader.read("ass3-campus.png"), centroids);
+        BuildingFinder.displayBuildingID(ImageReader.read("ass3-campus.png"), centroids);
     }
 }
