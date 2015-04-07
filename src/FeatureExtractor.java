@@ -53,6 +53,7 @@ public class FeatureExtractor
             featureA(i);
             featureB(i);
             featureC(i);
+            featureD(i);
         }
         // display results
         for (Set<Integer> set : feature) {
@@ -120,6 +121,72 @@ public class FeatureExtractor
         }
     }
 
+    /**
+     * Extracts feature 7, 8, 9 for a building.
+     * perfect square    7
+     * almost square     8
+     * perfect rectangle 9
+     * For MBR, four coordinates are:
+     *     rMin, cMin----rMin, cMax
+     *     |                      |
+     *     |                      |
+     *     |                      |
+     *     |                      |
+     *     |                      |
+     *     |                      |
+     *     rMax, cMin----rMax, cMax
+     * @param building
+     */
+    private void featureD(int building)
+    {
+        int h = cMax[building] - cMin[building] + 1;
+        int v = rMax[building] - rMin[building] + 1;
+        int rowMin = rMin[building], rowMax = rMax[building];
+        int colMin = cMin[building], colMax = cMax[building];
+        /** rough check: if MBR is square **/
+        if (building == 17) {
+            System.out.println(h + " " + v);
+            System.out.printf("cMin: %d cMax %d rMin %d rMax %d\n", cMin[17], cMax[17], rMin[17], rMax[17]);
+        }
+        checkingSquare:
+        if (h == v) {
+            /** check if is square, time consuming **/
+            for (int r = rowMin; r <= rowMax; r++)
+                for (int c = colMin; c <= colMax; c++) {
+                    if (img[r][c] - 1 != building) {
+                        if (building == 17) {
+                            System.out.println(img[r][c]);
+                            System.out.println("17 not perfect square");
+                        }
+                        break checkingSquare;
+                    }
+
+                }
+            feature[7].add(building);
+        }
+        /** rough check: if MBR is almost square **/
+        double hvRatio = h / (double)v;
+        checkingAlmostSquare:
+        if (1.0 < hvRatio && hvRatio < 1.2) {
+            /** check if is all filled, time consuming **/
+            for (int r = rowMin; r <= rowMax; r++)
+                for (int c = colMin; c <= colMax; c++) {
+                    if (img[r][c] - 1 != building)
+                        break checkingAlmostSquare;
+                }
+            feature[8].add(building);
+        }
+        /** check if is perfect rectangle, time consuming **/
+        if (hvRatio != 1.0) { // excluding square
+            for (int r = rowMin; r <= rowMax; r++)
+                for (int c = colMin; c <= colMax; c++) {
+                    if (img[r][c] - 1 != building)
+                        return ;
+                }
+            feature[9].add(building);
+        }
+    }
+
     // testing
     public static void main(String[] args)
     {
@@ -127,7 +194,6 @@ public class FeatureExtractor
         int[][] img = (int[][]) IOUtil.deserialize("img.ser");
         int[][] MBRCoordinates = (int[][]) IOUtil.deserialize("MBRCoordinates.ser");
         int[] area = (int[]) IOUtil.deserialize("area.ser");
-        System.out.println(area[13]);
         int[][] centroids = (int[][]) IOUtil.deserialize("centroids.ser");
 
         FeatureExtractor fExtractor = new FeatureExtractor(MBRCoordinates, area, centroids, img);

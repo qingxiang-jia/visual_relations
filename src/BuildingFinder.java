@@ -10,14 +10,15 @@ public class BuildingFinder
 {
     /**
      * For MBR, four coordinates are:
-     *     rMin, cMin----rMin, cMax
-     *     |                      |
-     *     |                      |
-     *     |                      |
-     *     |                      |
-     *     |                      |
-     *     |                      |
-     *     rMax, cMin----rMax, cMax
+     * rMin, cMin----rMin, cMax
+     * |                      |
+     * |                      |
+     * |                      |
+     * |                      |
+     * |                      |
+     * |                      |
+     * rMax, cMin----rMax, cMax
+     *
      * @param img
      * @param numOfBuildings
      */
@@ -43,20 +44,24 @@ public class BuildingFinder
         for (int r = 0; r < img.length; r++)
             for (int c = 0; c < img[0].length; c++) {
                 if (img[r][c] == 0) { // skip black space
-                } else if (rMin[img[r][c]-1] > r) {
-                    rMin[img[r][c]-1] = r;
-                } else if (rMax[img[r][c]-1] < r) {
-                    rMax[img[r][c]-1] = r;
-                } else if (cMin[img[r][c]-1] > c) {
-                    cMin[img[r][c]-1] = c;
-                } else if (cMax[img[r][c]-1] < c) {
-                    cMax[img[r][c]-1] = c;
+                } else {
+                    if (rMin[img[r][c] - 1] > r)
+                        rMin[img[r][c] - 1] = r;
+                    if (rMax[img[r][c] - 1] < r)
+                        rMax[img[r][c] - 1] = r;
+                    if (cMin[img[r][c] - 1] > c)
+                        cMin[img[r][c] - 1] = c;
+                    if (cMax[img[r][c] - 1] < c)
+                        cMax[img[r][c] - 1] = c;
                 }
             }
 
         /** assemble solution **/
         int res[][] = new int[4][];
-        res[0] = rMin; res[1] = rMax; res[2] = cMin; res[3] = cMax;
+        res[0] = rMin;
+        res[1] = rMax;
+        res[2] = cMin;
+        res[3] = cMax;
         System.out.println(Arrays.toString(rMin));
         System.out.println(Arrays.toString(rMax));
         System.out.println(Arrays.toString(cMin));
@@ -73,11 +78,11 @@ public class BuildingFinder
         /** for each building, draw MBR **/
         for (int i = 0; i < MBRCoordinates[0].length; i++) {
             /** upper left **/
-            g.drawOval(cMin[i]-r, rMin[i]-r, 2 * r, 2 * r);
+            g.drawOval(cMin[i] - r, rMin[i] - r, 2 * r, 2 * r);
             /** upper right **/
-            g.drawOval(cMax[i]-r, rMin[i]-r, 2 * r, 2 * r);
+            g.drawOval(cMax[i] - r, rMin[i] - r, 2 * r, 2 * r);
             /** lower left **/
-            g.drawOval(cMin[i]-r, rMax[i]-r, 2 * r, 2 * r);
+            g.drawOval(cMin[i] - r, rMax[i] - r, 2 * r, 2 * r);
             /** lower right **/
             g.drawOval(cMax[i] - r, rMax[i] - r, 2 * r, 2 * r);
         }
@@ -118,6 +123,7 @@ public class BuildingFinder
     /**
      * Computes centroid for each building. In this case, x_bar = (sum(x_coords)/area);
      * y_bar = (sum(y_coords)/area)/
+     *
      * @param img
      * @param MBRCoordinates
      * @param area
@@ -137,7 +143,7 @@ public class BuildingFinder
                         sumY += r;
                     }
                 }
-            centroids[i] = new int[]{sumY/area[i], sumX/area[i]};
+            centroids[i] = new int[]{sumY / area[i], sumX / area[i]};
         }
         return centroids;
     }
@@ -183,8 +189,6 @@ public class BuildingFinder
 
         // above: all stuff contained in BuildingFinder
         */
-
-
 
 
         // below: serialization of all results from BuildingFinder
