@@ -31,12 +31,14 @@ public class FeatureExtractor
     /** int[][] version of ass3-labeled.pgm **/
     int[][] img;
 
+    @SuppressWarnings("unchecked")
     public FeatureExtractor(int[][] MBRCoordinates, int[] area, int[][] centroids, int[][] img)
     {
-        int[] rMin = MBRCoordinates[0], rMax = MBRCoordinates[1], cMin = MBRCoordinates[2], cMax = MBRCoordinates[3];
+        rMin = MBRCoordinates[0]; rMax = MBRCoordinates[1]; cMin = MBRCoordinates[2]; cMax = MBRCoordinates[3];
         this.area = area;
         this.centroids = centroids;
         this.img = img;
+        feature = new HashSet[area.length];
         for (int i = 0; i < area.length; i++) {
             feature[i] = new HashSet<>();
         }
@@ -67,7 +69,7 @@ public class FeatureExtractor
     {
         if (area[building] < 400) {
             feature[0].add(building);
-        } else if (800 < area[building] && area[building] < 2200) {
+        } else if (700 < area[building] && area[building] < 2200) {
             feature[1].add(building);
         } else if (area[building] > 2500) {
             feature[2].add(building);
@@ -88,6 +90,21 @@ public class FeatureExtractor
         } else if (max > 150) {
             feature[4].add(building);
         }
+    }
+
+    // testing
+    public static void main(String[] args)
+    {
+        /** deserialize required files **/
+        int[][] img = (int[][]) IOUtil.deserialize("img.ser");
+        int[][] MBRCoordinates = (int[][]) IOUtil.deserialize("MBRCoordinates.ser");
+        int[] area = (int[]) IOUtil.deserialize("area.ser");
+        System.out.println(area[13]);
+        int[][] centroids = (int[][]) IOUtil.deserialize("centroids.ser");
+
+        FeatureExtractor fExtractor = new FeatureExtractor(MBRCoordinates, area, centroids, img);
+        /** begin extraction **/
+        fExtractor.extract();
     }
 
 }
