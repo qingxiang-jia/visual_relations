@@ -54,6 +54,7 @@ public class FeatureExtractor
             featureB(i);
             featureC(i);
             featureD(i);
+            featureE(i);
         }
         // display results
         for (Set<Integer> set : feature) {
@@ -187,6 +188,33 @@ public class FeatureExtractor
         }
     }
 
+    /**
+     * Extracts feature 10, 11, 12.
+     * top 1/3 of the map    10
+     * middle 1/3 of the map 11
+     * bottom 1/3 of the map 12
+     * For MBR, four coordinates are:
+     *     rMin, cMin----rMin, cMax
+     *     |                      |
+     *     |                      |
+     *     |                      |
+     *     |                      |
+     *     |                      |
+     *     |                      |
+     *     rMax, cMin----rMax, cMax
+     */
+    private void featureE(int building)
+    {
+        int row = centroids[building][0]; // [building_id] -> int[]{r, c}
+        if (0 <= row && row < 165) {
+            feature[10].add(building);
+        } else if (165 <= row && row < 320) {
+            feature[11].add(building);
+        } else if (330 <= row) { // notice not every building is included
+            feature[12].add(building);
+        }
+    }
+
     // testing
     public static void main(String[] args)
     {
@@ -200,5 +228,4 @@ public class FeatureExtractor
         /** begin extraction **/
         fExtractor.extract();
     }
-
 }
