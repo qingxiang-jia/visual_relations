@@ -48,7 +48,12 @@ public class FeatureExtractor
     public void extract()
     {
         for (int i = 0; i < area.length; i++) {
-            //todo
+            featureA(i);
+            featureB(i);
+        }
+        // display results
+        for (Set<Integer> set : feature) {
+            System.out.println(set.toString());
         }
     }
 

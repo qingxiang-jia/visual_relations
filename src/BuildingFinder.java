@@ -167,6 +167,7 @@ public class BuildingFinder
 
     public static void main(String[] args)
     {
+        /*
         int[][] img = PGMReader.read("ass3-labeled.pgm");
 
         int[][] MBRCoordinates = BuildingFinder.findMBR(img, 27);
@@ -179,5 +180,23 @@ public class BuildingFinder
 //        int[][] centroids = BuildingFinder.computeCentroid(img, MBRCoordinates, area);
 //        BuildingFinder.displayCentroid(ImageReader.read("ass3-campus.png"), centroids);
 //        BuildingFinder.displayBuildingID(ImageReader.read("ass3-campus.png"), centroids);
+
+        // above: all stuff contained in BuildingFinder
+        */
+
+
+
+
+        // below: serialization of all results from BuildingFinder
+        int[][] img = PGMReader.read("ass3-labeled.pgm"); // read in labelled campus map
+        int[][] MBRCoordinates = BuildingFinder.findMBR(img, 27); // find coordinates of MBR for each building
+        int area[] = BuildingFinder.computeArea(img, MBRCoordinates); // compute area for each building (not MBR)
+        int[][] centroids = BuildingFinder.computeCentroid(img, MBRCoordinates, area); // compute center of mass for each building
+        /** serialize all the results **/
+        IOUtil.serialize("img.ser", img);
+        IOUtil.serialize("MBRCoordinates.ser", MBRCoordinates);
+        IOUtil.serialize("area.ser", area);
+        IOUtil.serialize("centroids.ser", centroids);
+        System.out.println("Serialization done.");
     }
 }
