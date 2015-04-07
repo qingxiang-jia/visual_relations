@@ -52,6 +52,7 @@ public class FeatureExtractor
         for (int i = 0; i < area.length; i++) {
             featureA(i);
             featureB(i);
+            featureC(i);
         }
         // display results
         for (Set<Integer> set : feature) {
@@ -89,6 +90,33 @@ public class FeatureExtractor
             feature[3].add(building);
         } else if (max > 150) {
             feature[4].add(building);
+        }
+    }
+
+    /**
+     * Extracts feature 5, 6 for a building.
+     * short horizontal long vertical 5
+     * long horizontal short vertical 6
+     * For MBR, four coordinates are:
+     *     rMin, cMin----rMin, cMax
+     *     |                      |
+     *     |                      |
+     *     |                      |
+     *     |                      |
+     *     |                      |
+     *     |                      |
+     *     rMax, cMin----rMax, cMax
+     * @param building
+     */
+    private void featureC(int building)
+    {
+        int h = cMax[building] - cMin[building];
+        int v = rMax[building] - rMin[building];
+        float hvRatio = h / (float) v;
+        if (hvRatio < 0.8) { // ignoring non-obvious hvRatio, i.e., [0.8, 1.3]
+            feature[5].add(building);
+        } else if (hvRatio > 1.3) {
+            feature[6].add(building);
         }
     }
 
