@@ -1,5 +1,4 @@
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 /**
  * After BuildingFinder finds for each building the MBR (coordinates),
@@ -56,6 +55,7 @@ public class FeatureExtractor
             featureD(i);
             featureE(i);
             featureF(i);
+            featureG(i);
         }
         // display results
         for (Set<Integer> set : feature) {
@@ -216,6 +216,15 @@ public class FeatureExtractor
         }
     }
 
+    /**
+     * Extracts feature 13, 14, 15, 16, 17.
+     * at north border 13
+     * at south border 14
+     * at west border  15
+     * at east border  16
+     * at center       17
+     * @param building
+     */
     private void featureF(int building)
     {
         int R = img.length, C = img[0].length;
@@ -238,6 +247,87 @@ public class FeatureExtractor
             for (int c = 100; c < 170; c += 10)
                 if (img[r][c] != 0)
                     feature[17].add(img[r][c] - 1);
+    }
+
+    /**
+     * Extracts feature 18.
+     * one inner hole 18
+     * Given a building id and MBR, check if there is area with color 0 by area with color building + 1.
+     * Algorithm: BFS. For each pixel in MBR, using BFS to find connected component (color 0) that is not
+     * touching the border of the MBR.
+     *     rMin, cMin----rMin, cMax
+     *     |                      |
+     *     |                      |
+     *     |                      |
+     *     |                      |
+     *     |                      |
+     *     |                      |
+     *     rMax, cMin----rMax, cMax
+     * @param building
+     * A point is represented as an integer array, whose length is 2, the first element is row #, the second
+     * is column #.
+     */
+    private void featureG(int building)
+    {
+        System.out.println(building);
+        int rowMin = rMin[building], rowMax = rMax[building], colMin = cMin[building], colMax = cMax[building];
+        for (int r = rowMin; r <= rowMax; r++)
+            for (int c = colMin; c <= colMax; c++) {
+                boolean[][] visited = new boolean[rowMax - rowMin + 1][colMax - colMin + 1];
+                findConnectedComponent:
+                if (img[r][c] == 0 && !visited[r - rowMin][c - colMin]) {
+                    Queue<int[]> queue = new LinkedList<>();
+                    queue.add(new int[]{r, c});
+                    while (!queue.isEmpty()) {
+                        int[] pixel = queue.remove();
+                        visited[pixel[0] - rowMin][pixel[1] - colMin] = true; // mark as visited
+                        /** check if is at border **/
+                        if (pixel[0] == rowMin || pixel[0] == rowMax || pixel[1] == colMin || pixel[1] == colMax) {
+                            /** for efficiency, all remaining pixels should be marked as visited as well **/
+                            while (!queue.isEmpty()) {
+                                int[] pixelUnwanted = queue.remove();
+                                visited[pixelUnwanted[0] - rowMin][pixelUnwanted[1] - colMin] = true;
+                            }
+                            break findConnectedComponent;
+                        }
+                        /** add up **/
+                        if ((pixel[0] - 1 >= rowMin)
+                                && (!visited[(pixel[0] - 1) - rowMin][pixel[1] - colMin])
+                                && (img[pixel[0] - 1][pixel[1]] == 0)) {
+                            queue.add(new int[]{pixel[0] - 1, pixel[1]});
+                            visited[(pixel[0] - 1) - rowMin][pixel[1] - colMin] = true;
+                        }
+                        /** add down **/
+                        if ((pixel[0] + 1 <= rowMax)
+                                && (!visited[(pixel[0] + 1) - rowMin][pixel[1] - colMin])
+                                && (img[pixel[0] + 1][pixel[1]] == 0)) {
+                            queue.add(new int[]{pixel[0] + 1, pixel[1]});
+                            visited[(pixel[0] + 1) - rowMin][pixel[1] - colMin] = true;
+                        }
+                        /** add left **/
+                        if ((pixel[1] - 1 >= colMin)
+                                && (!visited[(pixel[0]) - rowMin][(pixel[1] - 1) - colMin])
+                                && (img[pixel[0]][pixel[1] - 1] == 0)) {
+                            queue.add(new int[]{pixel[0], pixel[1] - 1});
+                            visited[pixel[0] - rowMin][(pixel[1] - 1) - colMin] = true;
+                        }
+                        /** add right **/
+                        if ((pixel[1] + 1 <= colMax)
+                                && (!visited[(pixel[0]) - rowMin][(pixel[1] + 1) - colMin])
+                                && (img[pixel[0]][pixel[1] + 1] == 0)) {
+                            queue.add(new int[]{pixel[0], pixel[1] + 1});
+                            visited[pixel[0] - rowMin][(pixel[1] + 1) - colMin] = true;
+                        }
+                    }
+                    if (queue.isEmpty()) {
+                        /** must have found a hole **/
+                        System.out.println("Added! " + building);
+                        feature[18].add(building);
+                        /** since we only want to know if there is at least a hole **/
+                        return;
+                    }
+                }
+            }
     }
 
     // testing
