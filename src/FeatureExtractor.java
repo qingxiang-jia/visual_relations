@@ -146,24 +146,13 @@ public class FeatureExtractor
         int rowMin = rMin[building], rowMax = rMax[building];
         int colMin = cMin[building], colMax = cMax[building];
         /** rough check: if MBR is square **/
-        if (building == 17) {
-            System.out.println(h + " " + v);
-            System.out.printf("cMin: %d cMax %d rMin %d rMax %d\n", cMin[17], cMax[17], rMin[17], rMax[17]);
-        }
         checkingSquare:
         if (h == v) {
             /** check if is square, time consuming **/
             for (int r = rowMin; r <= rowMax; r++)
-                for (int c = colMin; c <= colMax; c++) {
-                    if (img[r][c] - 1 != building) {
-                        if (building == 17) {
-                            System.out.println(img[r][c]);
-                            System.out.println("17 not perfect square");
-                        }
+                for (int c = colMin; c <= colMax; c++)
+                    if (img[r][c] - 1 != building)
                         break checkingSquare;
-                    }
-
-                }
             feature[7].add(building);
         }
         /** rough check: if MBR is almost square **/
@@ -172,19 +161,17 @@ public class FeatureExtractor
         if (1.0 < hvRatio && hvRatio < 1.2) {
             /** check if is all filled, time consuming **/
             for (int r = rowMin; r <= rowMax; r++)
-                for (int c = colMin; c <= colMax; c++) {
+                for (int c = colMin; c <= colMax; c++)
                     if (img[r][c] - 1 != building)
                         break checkingAlmostSquare;
-                }
             feature[8].add(building);
         }
         /** check if is perfect rectangle, time consuming **/
         if (hvRatio != 1.0) { // excluding square
             for (int r = rowMin; r <= rowMax; r++)
-                for (int c = colMin; c <= colMax; c++) {
+                for (int c = colMin; c <= colMax; c++)
                     if (img[r][c] - 1 != building)
                         return ;
-                }
             feature[9].add(building);
         }
     }
@@ -269,7 +256,6 @@ public class FeatureExtractor
      */
     private void featureG(int building)
     {
-        System.out.println(building);
         int rowMin = rMin[building], rowMax = rMax[building], colMin = cMin[building], colMax = cMax[building];
         for (int r = rowMin; r <= rowMax; r++)
             for (int c = colMin; c <= colMax; c++) {
@@ -321,13 +307,22 @@ public class FeatureExtractor
                     }
                     if (queue.isEmpty()) {
                         /** must have found a hole **/
-                        System.out.println("Added! " + building);
                         feature[18].add(building);
                         /** since we only want to know if there is at least a hole **/
                         return;
                     }
                 }
             }
+    }
+
+    /**
+     * Extracts feature 19, 20, 21, 22.
+     * one dent on west
+     * @param building
+     */
+    private void featureH(int building)
+    {
+
     }
 
     // testing
