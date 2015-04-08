@@ -55,6 +55,7 @@ public class FeatureExtractor
             featureC(i);
             featureD(i);
             featureE(i);
+            featureF(i);
         }
         // display results
         for (Set<Integer> set : feature) {
@@ -213,6 +214,30 @@ public class FeatureExtractor
         } else if (330 <= row) { // notice not every building is included
             feature[12].add(building);
         }
+    }
+
+    private void featureF(int building)
+    {
+        int R = img.length, C = img[0].length;
+        /** collect buildings at north & south border **/
+        for (int c = 0; c < C; c += 30) {
+            if (img[13][c] != 0)
+                feature[13].add(img[13][c] - 1);
+            if (img[475][c] != 0)
+                feature[14].add(img[475][c] - 1);
+        }
+        /** collect buildings at west & east border **/
+        for (int r = 0; r < R; r += 30) {
+            if (img[r][15] != 0)
+                feature[15].add(img[r][15] - 1);
+            if (img[r][260] != 0)
+                feature[16].add(img[r][260] - 1);
+        }
+        /** collect buildings at center **/
+        for (int r = 200; r < 280; r += 10)
+            for (int c = 100; c < 170; c += 10)
+                if (img[r][c] != 0)
+                    feature[17].add(img[r][c] - 1);
     }
 
     // testing
