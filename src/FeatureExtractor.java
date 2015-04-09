@@ -56,6 +56,7 @@ public class FeatureExtractor
             featureE(i);
             featureF(i);
             featureG(i);
+            featureH(i);
         }
         // display results
         for (Set<Integer> set : feature) {
@@ -317,12 +318,139 @@ public class FeatureExtractor
 
     /**
      * Extracts feature 19, 20, 21, 22.
-     * one dent on west
+     * one dent on west and east borders 19
+     * only one dent on north border     20
+     * two dents on west border          21
+     * four dents on east border         22
      * @param building
      */
     private void featureH(int building)
     {
-
+        int id = building + 1;
+        int dentsNorth, dentsSouth, dentsWest, dentsEast;
+        int flips = 0;
+        int rowMin = rMin[building], rowMax = rMax[building], colMin = cMin[building], colMax = cMax[building];
+        int rowBegin = rowMin, colBegin = colMin;
+        int prev;
+        /** count dents on north side **/
+        for (int c = colMin; c <= colMax; c++) { // slide to the right beginning pixel
+            if (img[rowMin + 1][colMin] == id) {
+                colBegin = c;
+                break;
+            }
+        }
+        if (img[rowMin + 1][colBegin] != id) // initialize prev
+            prev = 0;
+        else
+            prev = id;
+        for (int c = colBegin; c <= colMax; c++) {
+            int curr;
+            if (img[rowMin + 1][c] == id) // because other building may get into this one's MBR
+                curr = id;
+            else
+                curr = 0;
+            if (curr != prev) {
+                prev = curr;
+                flips++;
+                System.out.println(flips);
+            }
+        }
+        dentsNorth = flips / 2;
+        flips = 0;
+        /** count dents on south border **/
+        colBegin = colMin;
+        for (int c = colMin; c <= colMax; c++) { // slide to the right beginning pixel
+            if (img[rowMax - 1][colMin] == id) {
+                colBegin = c;
+                break;
+            }
+        }
+        if (img[rowMax - 1][colBegin] != id) // initialize prev
+            prev = 0;
+        else
+            prev = id;
+        for (int c = colBegin; c <= colMax; c++) {
+            int curr;
+            if (img[rowMax - 1][c] == id)
+                curr = id;
+            else
+                curr = 0;
+            if (curr != prev) {
+                prev = curr;
+                flips++;
+                System.out.println(flips);
+            }
+        }
+        dentsSouth = flips / 2;
+        flips = 0;
+        /** count dents on west border **/
+        for (int r = rowMin; r <= rowMax; r++) {
+            if (img[r][colMin + 1] == id) {
+                rowBegin = r;
+                break;
+            }
+        }
+        if (img[rowBegin][colMin + 1] != id)
+            prev = 0;
+        else
+            prev = id;
+        for (int r = rowBegin; r <= rowMax; r++) {
+            int curr;
+            if (img[r][colMin + 1] == id)
+                curr = id;
+            else
+                curr = 0;
+            if (curr != prev) {
+                prev = curr;
+                flips++;
+                System.out.println(flips);
+            }
+        }
+        dentsWest = flips / 2;
+        flips = 0;
+        /** count dents on east border **/
+        rowBegin = rowMin;
+        for (int r = rowMin; r <= rowMax; r++) {
+            if (img[r][colMax - 1] == id) {
+                rowBegin = r;
+                break;
+            }
+        }
+        if (img[rowBegin][colMax - 1] != id)
+            prev = 0;
+        else
+            prev = id;
+        for (int r = rowBegin; r <= rowMax; r++) {
+            int curr;
+            if (img[r][colMax - 1] == id)
+                curr = id;
+            else
+                curr = 0;
+            if (curr != prev) {
+                prev = curr;
+                flips++;
+                System.out.println(flips);
+            }
+        }
+        dentsEast = flips / 2;
+        /** summary **/
+        if (dentsWest == 1 && dentsEast == 1) {
+            feature[19].add(building);
+        }
+        if (dentsNorth == 1 && (dentsSouth == 0 && dentsWest == 0 && dentsEast == 0)) {
+            feature[20].add(building);
+        }
+        if (dentsWest == 2) {
+            feature[21].add(building);
+        }
+        if (dentsEast == 4) {
+            feature[22].add(building);
+        }
+        System.out.println(building);
+        System.out.println("\nnorth: " + dentsNorth);
+        System.out.println("south: " + dentsSouth);
+        System.out.println("west: " + dentsWest);
+        System.out.println("east " + dentsEast);
     }
 
     // testing
