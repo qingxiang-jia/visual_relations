@@ -1,10 +1,13 @@
-import java.util.*;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Set;
 
 /**
  * After BuildingFinder finds for each building the MBR (coordinates),
  * area, center of mass, this class starts and extracts characteristics
  * for each building (p.2 ass3, largely revised though).
- *
+ * <p>
  * Idea: there are over 30 features used to describe each building.
  * Each building only gets a subset of the features to be identified
  * visually on the map. To make the code neat, all 34 features are
@@ -15,25 +18,38 @@ import java.util.*;
  */
 public class FeatureExtractor
 {
-    /** features **/
+    /**
+     * features *
+     */
     Set<Integer>[] feature; // total 34
 
-    /** store MBR coordinates **/
+    /**
+     * store MBR coordinates *
+     */
     int[] rMin, rMax, cMin, cMax;
 
-    /** area of each building **/
+    /**
+     * area of each building *
+     */
     int[] area;
 
-    /** centers of mass **/
+    /**
+     * centers of mass *
+     */
     int[][] centroids;
 
-    /** int[][] version of ass3-labeled.pgm **/
+    /**
+     * int[][] version of ass3-labeled.pgm *
+     */
     int[][] img;
 
     @SuppressWarnings("unchecked")
     public FeatureExtractor(int[][] MBRCoordinates, int[] area, int[][] centroids, int[][] img, int numOfFeatures)
     {
-        rMin = MBRCoordinates[0]; rMax = MBRCoordinates[1]; cMin = MBRCoordinates[2]; cMax = MBRCoordinates[3];
+        rMin = MBRCoordinates[0];
+        rMax = MBRCoordinates[1];
+        cMin = MBRCoordinates[2];
+        cMax = MBRCoordinates[3];
         this.area = area;
         this.centroids = centroids;
         this.img = img;
@@ -57,6 +73,7 @@ public class FeatureExtractor
             featureF(i);
             featureG(i);
             featureH(i);
+            featureI(i);
         }
         // display results
         for (Set<Integer> set : feature) {
@@ -85,6 +102,7 @@ public class FeatureExtractor
      * Extracts features 3, 4 for a building.
      * longest 3
      * long    4
+     *
      * @param building
      */
     private void featureB(int building)
@@ -102,14 +120,15 @@ public class FeatureExtractor
      * short horizontal long vertical 5
      * long horizontal short vertical 6
      * For MBR, four coordinates are:
-     *     rMin, cMin----rMin, cMax
-     *     |                      |
-     *     |                      |
-     *     |                      |
-     *     |                      |
-     *     |                      |
-     *     |                      |
-     *     rMax, cMin----rMax, cMax
+     * rMin, cMin----rMin, cMax
+     * |                      |
+     * |                      |
+     * |                      |
+     * |                      |
+     * |                      |
+     * |                      |
+     * rMax, cMin----rMax, cMax
+     *
      * @param building
      */
     private void featureC(int building)
@@ -130,14 +149,15 @@ public class FeatureExtractor
      * almost square     8
      * perfect rectangle 9
      * For MBR, four coordinates are:
-     *     rMin, cMin----rMin, cMax
-     *     |                      |
-     *     |                      |
-     *     |                      |
-     *     |                      |
-     *     |                      |
-     *     |                      |
-     *     rMax, cMin----rMax, cMax
+     * rMin, cMin----rMin, cMax
+     * |                      |
+     * |                      |
+     * |                      |
+     * |                      |
+     * |                      |
+     * |                      |
+     * rMax, cMin----rMax, cMax
+     *
      * @param building
      */
     private void featureD(int building)
@@ -157,7 +177,7 @@ public class FeatureExtractor
             feature[7].add(building);
         }
         /** rough check: if MBR is almost square **/
-        double hvRatio = h / (double)v;
+        double hvRatio = h / (double) v;
         checkingAlmostSquare:
         if (1.0 < hvRatio && hvRatio < 1.2) {
             /** check if is all filled, time consuming **/
@@ -172,7 +192,7 @@ public class FeatureExtractor
             for (int r = rowMin; r <= rowMax; r++)
                 for (int c = colMin; c <= colMax; c++)
                     if (img[r][c] - 1 != building)
-                        return ;
+                        return;
             feature[9].add(building);
         }
     }
@@ -183,14 +203,14 @@ public class FeatureExtractor
      * middle 1/3 of the map 11
      * bottom 1/3 of the map 12
      * For MBR, four coordinates are:
-     *     rMin, cMin----rMin, cMax
-     *     |                      |
-     *     |                      |
-     *     |                      |
-     *     |                      |
-     *     |                      |
-     *     |                      |
-     *     rMax, cMin----rMax, cMax
+     * rMin, cMin----rMin, cMax
+     * |                      |
+     * |                      |
+     * |                      |
+     * |                      |
+     * |                      |
+     * |                      |
+     * rMax, cMin----rMax, cMax
      */
     private void featureE(int building)
     {
@@ -211,6 +231,7 @@ public class FeatureExtractor
      * at west border  15
      * at east border  16
      * at center       17
+     *
      * @param building
      */
     private void featureF(int building)
@@ -243,17 +264,17 @@ public class FeatureExtractor
      * Given a building id and MBR, check if there is area with color 0 by area with color building + 1.
      * Algorithm: BFS. For each pixel in MBR, using BFS to find connected component (color 0) that is not
      * touching the border of the MBR.
-     *     rMin, cMin----rMin, cMax
-     *     |                      |
-     *     |                      |
-     *     |                      |
-     *     |                      |
-     *     |                      |
-     *     |                      |
-     *     rMax, cMin----rMax, cMax
-     * @param building
-     * A point is represented as an integer array, whose length is 2, the first element is row #, the second
-     * is column #.
+     * rMin, cMin----rMin, cMax
+     * |                      |
+     * |                      |
+     * |                      |
+     * |                      |
+     * |                      |
+     * |                      |
+     * rMax, cMin----rMax, cMax
+     *
+     * @param building A point is represented as an integer array, whose length is 2, the first element is row #, the second
+     *                 is column #.
      */
     private void featureG(int building)
     {
@@ -317,11 +338,12 @@ public class FeatureExtractor
     }
 
     /**
-     * Extracts feature 19, 20, 21, 22.
+     * Extracts feature 19, 20, 21, 22 for a building.
      * one dent on west and east borders 19
      * only one dent on north border     20
      * two dents on west border          21
      * four dents on east border         22
+     *
      * @param building
      */
     private void featureH(int building)
@@ -446,16 +468,51 @@ public class FeatureExtractor
         if (dentsEast == 4) {
             feature[22].add(building);
         }
-        System.out.println(building);
-        System.out.println("\nnorth: " + dentsNorth);
-        System.out.println("south: " + dentsSouth);
-        System.out.println("west: " + dentsWest);
-        System.out.println("east " + dentsEast);
     }
 
+    /**
+     * Extracts feature 23 for a building.
+     * only one bump on west border
+     *
+     * @param building MBR diagram:
+     *                 rMin, cMin----rMin, cMax
+     *                 |                      |
+     *                 |                      |
+     *                 |                      |
+     *                 |                      |
+     *                 |                      |
+     *                 |                      |
+     *                 rMax, cMin----rMax, cMax
+     */
     private void featureI(int building)
     {
-
+        int id = building + 1;
+        int rowMin = rMin[building], rowMax = rMax[building], colMin = cMin[building], colMax = cMax[building];
+        /** find only one bump on west border **/
+        /** keeps ones with only upper left and lower left corner chopped off **/
+        if (img[rowMin][colMin] != id && img[rowMax][colMin] != id && img[rowMin][colMax] == id & img[rowMax][colMax] == id) {
+            int prev;
+            int flips = 0;
+            int numOfBumps;
+            if (img[rowMin][colMin] != id)
+                prev = 0;
+            else
+                prev = id;
+            for (int r = rowMin; r < rowMax; r++) {
+                int curr;
+                if (img[r][colMin + 1] == id)
+                    curr = id;
+                else
+                    curr = 0;
+                if (prev != curr) {
+                    prev = curr;
+                    flips++;
+                }
+            }
+            numOfBumps = flips / 2;
+            if (numOfBumps == 1)
+                feature[23].add(building);
+        }
     }
 
     // testing
