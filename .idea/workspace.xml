@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="b665257b-87ed-48a3-a0ad-76e35a455ade" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/FeatureExtractor.java" afterPath="$PROJECT_DIR$/src/FeatureExtractor.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="assn3.iws" />
@@ -71,8 +70,8 @@
       <file leaf-file-name="FeatureExtractor.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/FeatureExtractor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.62285715">
-              <caret line="418" column="24" selection-start-line="418" selection-start-column="24" selection-end-line="418" selection-end-column="24" />
+            <state vertical-scroll-proportion="8.295991">
+              <caret line="469" column="99" selection-start-line="469" selection-start-column="99" selection-end-line="469" selection-end-column="99" />
               <folding />
             </state>
           </provider>
@@ -524,7 +523,13 @@
       <option name="project" value="LOCAL" />
       <updated>1428531676195</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Added feature group H, tested.">
+      <created>1428544857593</created>
+      <option name="number" value="00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1428544857593</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -583,7 +588,8 @@
     <MESSAGE value="Added feature group F, tested." />
     <MESSAGE value="Added feature group G, tested." />
     <MESSAGE value="Removed debug code for feature group G." />
-    <option name="LAST_COMMIT_MESSAGE" value="Removed debug code for feature group G." />
+    <MESSAGE value="Added feature group H, tested." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added feature group H, tested." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1000,8 +1006,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/FeatureExtractor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.62285715">
-          <caret line="418" column="24" selection-start-line="418" selection-start-column="24" selection-end-line="418" selection-end-column="24" />
+        <state vertical-scroll-proportion="8.295991">
+          <caret line="469" column="99" selection-start-line="469" selection-start-column="99" selection-end-line="469" selection-end-column="99" />
           <folding />
         </state>
       </provider>

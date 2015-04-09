@@ -31,14 +31,14 @@ public class FeatureExtractor
     int[][] img;
 
     @SuppressWarnings("unchecked")
-    public FeatureExtractor(int[][] MBRCoordinates, int[] area, int[][] centroids, int[][] img)
+    public FeatureExtractor(int[][] MBRCoordinates, int[] area, int[][] centroids, int[][] img, int numOfFeatures)
     {
         rMin = MBRCoordinates[0]; rMax = MBRCoordinates[1]; cMin = MBRCoordinates[2]; cMax = MBRCoordinates[3];
         this.area = area;
         this.centroids = centroids;
         this.img = img;
-        feature = new HashSet[area.length];
-        for (int i = 0; i < area.length; i++) {
+        feature = new HashSet[numOfFeatures];
+        for (int i = 0; i < numOfFeatures; i++) {
             feature[i] = new HashSet<>();
         }
     }
@@ -453,6 +453,11 @@ public class FeatureExtractor
         System.out.println("east " + dentsEast);
     }
 
+    private void featureI(int building)
+    {
+
+    }
+
     // testing
     public static void main(String[] args)
     {
@@ -462,7 +467,7 @@ public class FeatureExtractor
         int[] area = (int[]) IOUtil.deserialize("area.ser");
         int[][] centroids = (int[][]) IOUtil.deserialize("centroids.ser");
 
-        FeatureExtractor fExtractor = new FeatureExtractor(MBRCoordinates, area, centroids, img);
+        FeatureExtractor fExtractor = new FeatureExtractor(MBRCoordinates, area, centroids, img, 34);
         /** begin extraction **/
         fExtractor.extract();
     }
