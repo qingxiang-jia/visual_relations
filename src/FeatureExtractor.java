@@ -75,6 +75,7 @@ public class FeatureExtractor
             featureH(i);
             featureI(i);
             featureJ(i);
+            featureK(i);
         }
         // display results
         for (Set<Integer> set : feature) {
@@ -518,14 +519,14 @@ public class FeatureExtractor
      * overall C reversed left to right 25
      * overall L                        26
      * overall L reversed left to right 27
-     * @param building
-     * Algorithm: having eight pin points spread evenly in the building image, and see which of them match.
-     * a b c d
-     * e f g h
-     * i j k l
-     * m n o p
-     * 8 points, map them onto the image and see how many (and which) of them match the image, so that we get
-     * an approximate shape of the image.
+     *
+     * @param building Algorithm: having eight pin points spread evenly in the building image, and see which of them match.
+     *                 a b c d
+     *                 e f g h
+     *                 i j k l
+     *                 m n o p
+     *                 8 points, map them onto the image and see how many (and which) of them match the image, so that we get
+     *                 an approximate shape of the image.
      */
     private void featureJ(int building)
     {
@@ -538,54 +539,22 @@ public class FeatureExtractor
                 e = false, f = false, g = false, h = false,
                 i = false, j = false, k = false, l = false,
                 m = false, n = false, o = false, p = false;
-        if (img[(int) (R + 0.1 * V)][(int) (C + 0.2 * H)] == id) {
-            a = true;
-        }
-        if (img[(int) (R + 0.1 * V)][(int) (C + 0.4 * H)] == id) {
-            b = true;
-        }
-        if (img[(int) (R + 0.1 * V)][(int) (C + 0.6 * H)] == id) {
-            c = true;
-        }
-        if (img[(int) (R + 0.1 * V)][(int) (C + 0.8 * H)] == id) {
-            d = true;
-        }
-        if (img[(int) (R + 0.4 * V)][(int) (C + 0.2 * H)] == id) {
-            e = true;
-        }
-        if (img[(int) (R + 0.4 * V)][(int) (C + 0.4 * H)] == id) {
-            f = true;
-        }
-        if (img[(int) (R + 0.4 * V)][(int) (C + 0.6 * H)] == id) {
-            g = true;
-        }
-        if (img[(int) (R + 0.6 * V)][(int) (C + 0.8 * H)] == id) {
-            h = true;
-        }
-        if (img[(int) (R + 0.6 * V)][(int) (C + 0.2 * H)] == id) {
-            i = true;
-        }
-        if (img[(int) (R + 0.6 * V)][(int) (C + 0.4 * H)] == id) {
-            j = true;
-        }
-        if (img[(int) (R + 0.6 * V)][(int) (C + 0.6 * H)] == id) {
-            k = true;
-        }
-        if (img[(int) (R + 0.6 * V)][(int) (C + 0.8 * H)] == id) {
-            l = true;
-        }
-        if (img[(int) (R + 0.9 * V)][(int) (C + 0.2 * H)] == id) {
-            m = true;
-        }
-        if (img[(int) (R + 0.9 * V)][(int) (C + 0.4 * H)] == id) {
-            n = true;
-        }
-        if (img[(int) (R + 0.9 * V)][(int) (C + 0.6 * H)] == id) {
-            o = true;
-        }
-        if (img[(int) (R + 0.9 * V)][(int) (C + 0.8 * H)] == id) {
-            p = true;
-        }
+        if (img[(int) (R + 0.1 * V)][(int) (C + 0.2 * H)] == id) a = true;
+        if (img[(int) (R + 0.1 * V)][(int) (C + 0.4 * H)] == id) b = true;
+        if (img[(int) (R + 0.1 * V)][(int) (C + 0.6 * H)] == id) c = true;
+        if (img[(int) (R + 0.1 * V)][(int) (C + 0.8 * H)] == id) d = true;
+        if (img[(int) (R + 0.4 * V)][(int) (C + 0.2 * H)] == id) e = true;
+        if (img[(int) (R + 0.4 * V)][(int) (C + 0.4 * H)] == id) f = true;
+        if (img[(int) (R + 0.4 * V)][(int) (C + 0.6 * H)] == id) g = true;
+        if (img[(int) (R + 0.6 * V)][(int) (C + 0.8 * H)] == id) h = true;
+        if (img[(int) (R + 0.6 * V)][(int) (C + 0.2 * H)] == id) i = true;
+        if (img[(int) (R + 0.6 * V)][(int) (C + 0.4 * H)] == id) j = true;
+        if (img[(int) (R + 0.6 * V)][(int) (C + 0.6 * H)] == id) k = true;
+        if (img[(int) (R + 0.6 * V)][(int) (C + 0.8 * H)] == id) l = true;
+        if (img[(int) (R + 0.9 * V)][(int) (C + 0.2 * H)] == id) m = true;
+        if (img[(int) (R + 0.9 * V)][(int) (C + 0.4 * H)] == id) n = true;
+        if (img[(int) (R + 0.9 * V)][(int) (C + 0.6 * H)] == id) o = true;
+        if (img[(int) (R + 0.9 * V)][(int) (C + 0.8 * H)] == id) p = true;
         /** decide general shape **/
         /** see if it's an upside down L shaped building: d, c, b, a, e, i, m must be true;
          * g, h, k, l, o, p must be false; the rest are optional **/
@@ -598,6 +567,216 @@ public class FeatureExtractor
         } else if ((d && h && l && p && o && n && m) && (!a && !b && !e && !f)) {
             feature[27].add(building);
         }
+    }
+
+    /**
+     * Extracts feature 28, 29, 30, 31, 32, 33.
+     * three corners chewed off                                                                     28
+     * four corners chewed off like a square                                                        29
+     * four corners chewed off not like a square                                                    30
+     * bottom two corners chewed off like a square but top two corners chewed off not like a square 31
+     * west two corners chewed off like a square but east two corners chewed off not like a square  32
+     * bottom two corners chewed off like a square not like a square                                33
+     *
+     * @param building
+     */
+    private void featureK(int building)
+    {
+        int id = building + 1;
+        int rNW = rMin[building], cNW = cMin[building]; // r = row, c = column, NW, NE, SW, SE are directions.
+        int rNE = rMin[building], cNE = cMax[building];
+        int rSW = rMax[building], cSW = cMin[building];
+        int rSE = rMax[building], cSE = cMax[building];
+        /** check if three corners chewed off **/
+        int numOfCornersOff = 0;
+        /** check NW corner **/
+        if (img[rNW+1][cNW+1] != id)
+            numOfCornersOff++;
+        /** check NE corner **/
+        if (img[rNE+1][cNE-1] != id)
+            numOfCornersOff++;
+        /** check SW corner **/
+        if (img[rSW-1][cSW+1] != id)
+            numOfCornersOff++;
+        /** check SE corner **/
+        if (img[rSE-1][cSE-1] != id)
+            numOfCornersOff++;
+        if (numOfCornersOff == 3) {
+            feature[28].add(building);
+        } else if (numOfCornersOff == 4) {
+            /** check for each corner if chewed off like a square **/
+            /** find boundary for NW corner **/
+            int rEnd = rSW-1, cEnd = cNE-1;
+            for (int r = rNW; r <= rSW; r++) {
+                if (img[r][cNW] == id) {
+                    rEnd = r - 1;
+                    break;
+                }
+            }
+            for (int c = cNW; c <= cNE; c++) {
+                if (img[rNW][c] == id) {
+                    cEnd = c - 1;
+                }
+            }
+            /** scan the area to see if all pixels are part of the building **/
+            boolean isSquare = true;
+            for (int r = rNW; r <= rEnd; r++)
+                for (int c = cNW; c <= cEnd; c++) {
+                    if (img[r][c] == id)
+                        isSquare = false;
+                }
+            boolean NWIsSquare = false;
+            if (isSquare)
+                NWIsSquare = true;
+
+            /** find boundary for NE corner **/
+            rEnd = rSE; cEnd = cNW;
+            for (int r = rNE; r <= rSE; r++) {
+                if (img[r][cNE] == id) {
+                    rEnd = r - 1;
+                    break;
+                }
+            }
+            for (int c = cNE; c >= cNW; c--) {
+                if (img[rNE][c] == id) {
+                    cEnd = c + 1;
+                    break;
+                }
+            }
+            /** scan the area to see if all pixels are part of the building **/
+            isSquare = true;
+            for (int r = rNE; r >= rEnd; r--)
+                for (int c = cNE; c <= cEnd; c++) {
+                    if (img[r][c] == id)
+                        isSquare = false;
+                }
+            boolean NEIsSquare = false;
+            if (isSquare)
+                NEIsSquare = true;
+
+            /** find boundary for SW corner **/
+            rEnd = rNW; cEnd = cSE;
+            for (int r = rSW; r >= rNW; r--) {
+                if (img[r][cSE] == id) {
+                    rEnd = r + 1;
+                    break;
+                }
+            }
+            for (int c = cSW; c <= cSE; c++) {
+                if (img[rSW][c] == id) {
+                    cEnd = c - 1;
+                    break;
+                }
+            }
+            /** scan the area to see if all pixels are part of the building **/
+            isSquare = true;
+            for (int r = rSW; r >= rEnd; r--)
+                for (int c = cSW; c <= cEnd; c++) {
+                    if (img[r][c] == id) {
+                        isSquare = false;
+                    }
+                }
+            boolean SWIsSquare = false;
+            if (isSquare)
+                SWIsSquare = true;
+
+            /** find boundary for SE corner **/
+            rEnd = rNE; cEnd = cNW;
+            for (int r = rSE; r >= rNE; r--) {
+                if (img[r][cSE] == id) {
+                    rEnd = r + 1;
+                    break;
+                }
+            }
+            for (int c = cSE; c >= cSW; c--) {
+                if (img[rSE][c] == id) {
+                    cEnd = c + 1;
+                    break;
+                }
+            }
+            /** scan the area to see if all pixels are part of the building **/
+            isSquare = true;
+            for (int r = rSE; r >= rEnd; r--)
+                for (int c = cSE; c >= cEnd; c--) {
+                    if (img[r][c] == id) {
+                        isSquare = false;
+                        break;
+                    }
+                }
+            boolean SEIsSquare = false;
+            if (isSquare)
+                SEIsSquare = true;
+
+            /** draw conclusions **/
+            if (NWIsSquare && NEIsSquare && SWIsSquare && SEIsSquare) {
+                feature[29].add(building);
+            } else if (!NWIsSquare && !NEIsSquare && !SWIsSquare && !SEIsSquare) {
+                feature[30].add(building);
+            } else if (!NWIsSquare && !NEIsSquare && SWIsSquare && SEIsSquare) {
+                feature[31].add(building);
+            } else if (NWIsSquare && SWIsSquare && !NEIsSquare && !SEIsSquare) {
+                feature[32].add(building);
+            }
+        } else if (numOfCornersOff == 2) {
+            /** find boundary for SW corner **/
+            int rEnd = rNW, cEnd = cSE;
+            for (int r = rSW; r >= rNW; r--) {
+                if (img[r][cSE] == id) {
+                    rEnd = r + 1;
+                    break;
+                }
+            }
+            for (int c = cSW; c <= cSE; c++) {
+                if (img[rSW][c] == id) {
+                    cEnd = c - 1;
+                    break;
+                }
+            }
+            /** scan the area to see if all pixels are part of the building **/
+            boolean isSquare = true;
+            for (int r = rSW; r >= rEnd; r--)
+                for (int c = cSW; c <= cEnd; c++) {
+                    if (img[r][c] == id) {
+                        isSquare = false;
+                    }
+                }
+            boolean SWIsSquare = false;
+            if (isSquare)
+                SWIsSquare = true;
+
+            /** find boundary for SE corner **/
+            rEnd = rNE; cEnd = cNW;
+            for (int r = rSE; r >= rNE; r--) {
+                if (img[r][cSE] == id) {
+                    rEnd = r + 1;
+                    break;
+                }
+            }
+            for (int c = cSE; c >= cSW; c--) {
+                if (img[rSE][c] == id) {
+                    cEnd = c + 1;
+                    break;
+                }
+            }
+            /** scan the area to see if all pixels are part of the building **/
+            isSquare = true;
+            for (int r = rSE; r >= rEnd; r--)
+                for (int c = cSE; c >= cEnd; c--) {
+                    if (img[r][c] == id) {
+                        isSquare = false;
+                        break;
+                    }
+                }
+            boolean SEIsSquare = false;
+            if (isSquare)
+                SEIsSquare = true;
+
+            /** draw conclusion **/
+            if (!SWIsSquare && !SEIsSquare) {
+                feature[33].add(building);
+            }
+        }
+
     }
 
     // testing

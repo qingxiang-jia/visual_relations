@@ -72,8 +72,8 @@
       <file leaf-file-name="FeatureExtractor.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/FeatureExtractor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.4510226">
-              <caret line="588" column="0" selection-start-line="588" selection-start-column="0" selection-end-line="588" selection-end-column="0" />
+            <state vertical-scroll-proportion="-10.689989">
+              <caret line="77" column="24" selection-start-line="77" selection-start-column="24" selection-end-line="77" selection-end-column="24" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -545,7 +545,13 @@
       <option name="project" value="LOCAL" />
       <updated>1428548718970</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Added feature group J, tested.">
+      <created>1428624600200</created>
+      <option name="number" value="00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1428624600200</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -607,7 +613,8 @@
     <MESSAGE value="Added feature group H, tested." />
     <MESSAGE value="Minor bug fix." />
     <MESSAGE value="Added feature group I, tested." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added feature group I, tested." />
+    <MESSAGE value="Added feature group J, tested." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added feature group J, tested." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1054,8 +1061,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/FeatureExtractor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4510226">
-          <caret line="588" column="0" selection-start-line="588" selection-start-column="0" selection-end-line="588" selection-end-column="0" />
+        <state vertical-scroll-proportion="-10.689989">
+          <caret line="77" column="24" selection-start-line="77" selection-start-column="24" selection-end-line="77" selection-end-column="24" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
