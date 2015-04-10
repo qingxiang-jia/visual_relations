@@ -62,8 +62,8 @@ public class SpacialRelationExtractor
         // print result
         for (int i = 0; i < numOfBuilding; i++) {
             System.out.println("building:" + i);
-            for (int j = 0; j < south[i].length; j++) {
-                if (west[i][j]) {
+            for (int j = 0; j < north[i].length; j++) {
+                if (north[i][j]) {
                     System.out.printf(" "+j+" ");
                     System.out.print("T\n");
                 }
@@ -101,11 +101,11 @@ public class SpacialRelationExtractor
         if (rowBegin < 10)
             rowBegin = 0;
 
-        scanBegin -= 0.2 * width; // widen the scan width a little bit
+        scanBegin -= 0.01 * width; // widen the scan width a little bit
         if (scanBegin < 0)
             scanBegin = 0;
 
-        scanEnd += 0.2 * width; // widen the scan width a little bit
+        scanEnd += 0.01 * width; // widen the scan width a little bit
         if (scanEnd > img[0].length)
             scanEnd = img[0].length - 1;
 
@@ -161,11 +161,11 @@ public class SpacialRelationExtractor
         if (rowBegin > img.length - 1)
             rowBegin = img.length - 1;
 
-        scanBegin -= 0.2 * width; // widen the scan width a little bit
+        scanBegin -= 0.01 * width; // widen the scan width a little bit
         if (scanBegin < 0)
             scanBegin = 0;
 
-        scanEnd += 0.2 * width; // widen the scan width a little bit
+        scanEnd += 0.01 * width; // widen the scan width a little bit
         if (scanEnd > img[0].length)
             scanEnd = img[0].length - 1;
 
