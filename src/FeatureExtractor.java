@@ -54,15 +54,14 @@ public class FeatureExtractor
         this.centroids = centroids;
         this.img = img;
         feature = new HashSet[numOfFeatures];
-        for (int i = 0; i < numOfFeatures; i++) {
+        for (int i = 0; i < numOfFeatures; i++)
             feature[i] = new HashSet<>();
-        }
     }
 
     /**
      * Call to extract all features for all buildings.
      */
-    public void extract()
+    public Set<Integer>[] extract()
     {
         for (int i = 0; i < area.length; i++) {
             featureA(i);
@@ -77,10 +76,7 @@ public class FeatureExtractor
             featureJ(i);
             featureK(i);
         }
-        // display results
-        for (Set<Integer> set : feature) {
-            System.out.println(set.toString());
-        }
+        return feature;
     }
 
     /**
@@ -91,13 +87,12 @@ public class FeatureExtractor
      */
     private void featureA(int building)
     {
-        if (area[building] < 400) {
+        if (area[building] < 400)
             feature[0].add(building);
-        } else if (700 < area[building] && area[building] < 2200) {
+        else if (700 < area[building] && area[building] < 2200)
             feature[1].add(building);
-        } else if (area[building] > 2500) {
+        else if (area[building] > 2500)
             feature[2].add(building);
-        }
     }
 
     /**
@@ -110,11 +105,10 @@ public class FeatureExtractor
     private void featureB(int building)
     {
         int max = Math.max(rMax[building] - rMin[building], cMax[building] - cMin[building]);
-        if (max > 250) {
+        if (max > 250)
             feature[3].add(building);
-        } else if (max > 150) {
+        else if (max > 150)
             feature[4].add(building);
-        }
     }
 
     /**
@@ -138,11 +132,10 @@ public class FeatureExtractor
         int h = cMax[building] - cMin[building];
         int v = rMax[building] - rMin[building];
         float hvRatio = h / (float) v;
-        if (hvRatio < 0.8) { // ignoring non-obvious hvRatio, i.e., [0.8, 1.3]
+        if (hvRatio < 0.8) // ignoring non-obvious hvRatio, i.e., [0.8, 1.3]
             feature[5].add(building);
-        } else if (hvRatio > 1.3) {
+        else if (hvRatio > 1.3)
             feature[6].add(building);
-        }
     }
 
     /**
@@ -217,13 +210,12 @@ public class FeatureExtractor
     private void featureE(int building)
     {
         int row = centroids[building][0]; // [building_id] -> int[]{r, c}
-        if (0 <= row && row < 165) {
+        if (0 <= row && row < 165)
             feature[10].add(building);
-        } else if (165 <= row && row < 320) {
+        else if (165 <= row && row < 320)
             feature[11].add(building);
-        } else if (330 <= row) { // notice not every building is included
+        else if (330 <= row) // notice not every building is included
             feature[12].add(building);
-        }
     }
 
     /**
@@ -454,18 +446,14 @@ public class FeatureExtractor
         }
         dentsEast = flips / 2;
         /** summary **/
-        if (dentsWest == 1 && dentsEast == 1) {
+        if (dentsWest == 1 && dentsEast == 1)
             feature[19].add(building);
-        }
-        if (dentsNorth == 1 && (dentsSouth == 0 && dentsWest == 0 && dentsEast == 0)) {
+        if (dentsNorth == 1 && (dentsSouth == 0 && dentsWest == 0 && dentsEast == 0))
             feature[20].add(building);
-        }
-        if (dentsWest == 2) {
+        if (dentsWest == 2)
             feature[21].add(building);
-        }
-        if (dentsEast == 4) {
+        if (dentsEast == 4)
             feature[22].add(building);
-        }
     }
 
     /**
@@ -558,15 +546,14 @@ public class FeatureExtractor
         /** decide general shape **/
         /** see if it's an upside down L shaped building: d, c, b, a, e, i, m must be true;
          * g, h, k, l, o, p must be false; the rest are optional **/
-        if ((d && c && b && a && e && i && m) && (!g && !h && !k && !l && !o && !p)) {
+        if ((d && c && b && a && e && i && m) && (!g && !h && !k && !l && !o && !p))
             feature[24].add(building);
-        } else if ((a && b && c && d && h && l && p && o && n && m) && (!e && !f && !i && !j)) {
+        else if ((a && b && c && d && h && l && p && o && n && m) && (!e && !f && !i && !j))
             feature[25].add(building);
-        } else if ((a && e && i && m && n && o && p) && (!c && !d)) {
+        else if ((a && e && i && m && n && o && p) && (!c && !d))
             feature[26].add(building);
-        } else if ((d && h && l && p && o && n && m) && (!a && !b && !e && !f)) {
+        else if ((d && h && l && p && o && n && m) && (!a && !b && !e && !f))
             feature[27].add(building);
-        }
     }
 
     /**
@@ -669,9 +656,6 @@ public class FeatureExtractor
                     break;
                 }
             }
-            if (building == 12) {
-                System.out.printf("rEnd: %d   cEnd: %d\n", rEnd, cEnd);
-            }
             /** scan the area to see if all pixels are part of the building **/
             isSquare = true;
             for (int r = rSW; r >= rEnd; r--)
@@ -712,23 +696,14 @@ public class FeatureExtractor
                 SEIsSquare = true;
 
             /** draw conclusions **/
-            if (NWIsSquare && NEIsSquare && SWIsSquare && SEIsSquare) {
+            if (NWIsSquare && NEIsSquare && SWIsSquare && SEIsSquare)
                 feature[29].add(building);
-            } else if (!NWIsSquare && !NEIsSquare && !SWIsSquare && !SEIsSquare) {
+            else if (!NWIsSquare && !NEIsSquare && !SWIsSquare && !SEIsSquare)
                 feature[30].add(building);
-            } else if (!NWIsSquare && !NEIsSquare && SWIsSquare && SEIsSquare) {
+            else if (!NWIsSquare && !NEIsSquare && SWIsSquare && SEIsSquare)
                 feature[31].add(building);
-            } else if (NWIsSquare && SWIsSquare && !NEIsSquare && !SEIsSquare) {
+            else if (NWIsSquare && SWIsSquare && !NEIsSquare && !SEIsSquare)
                 feature[32].add(building);
-            }
-            if (building == 12) {
-                System.out.println("NW " + NWIsSquare + "   NE " + NEIsSquare);
-                System.out.println("SW " + SWIsSquare + "   SE " + SEIsSquare);
-            }
-
-
-
-
         } else if (numOfCornersOff == 2) {
             /** find boundary for SW corner **/
             int rEnd = rNW, cEnd = cSE;
@@ -784,11 +759,9 @@ public class FeatureExtractor
                 SEIsSquare = true;
 
             /** draw conclusion **/
-            if (!SWIsSquare && !SEIsSquare) {
+            if (!SWIsSquare && !SEIsSquare)
                 feature[33].add(building);
-            }
         }
-
     }
 
     // testing
@@ -802,6 +775,8 @@ public class FeatureExtractor
 
         FeatureExtractor fExtractor = new FeatureExtractor(MBRCoordinates, area, centroids, img, 34);
         /** begin extraction **/
-        fExtractor.extract();
+        Set<Integer>[] feature = fExtractor.extract();
+        /** save the result **/
+        IOUtil.serialize("feature.ser", feature);
     }
 }
