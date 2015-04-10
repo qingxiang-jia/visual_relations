@@ -606,7 +606,7 @@ public class FeatureExtractor
         } else if (numOfCornersOff == 4) {
             /** check for each corner if chewed off like a square **/
             /** find boundary for NW corner **/
-            int rEnd = rSW-1, cEnd = cNE-1;
+            int rEnd = rSW, cEnd = cNE;
             for (int r = rNW; r <= rSW; r++) {
                 if (img[r][cNW] == id) {
                     rEnd = r - 1;
@@ -616,6 +616,7 @@ public class FeatureExtractor
             for (int c = cNW; c <= cNE; c++) {
                 if (img[rNW][c] == id) {
                     cEnd = c - 1;
+                    break;
                 }
             }
             /** scan the area to see if all pixels are part of the building **/
@@ -645,8 +646,8 @@ public class FeatureExtractor
             }
             /** scan the area to see if all pixels are part of the building **/
             isSquare = true;
-            for (int r = rNE; r >= rEnd; r--)
-                for (int c = cNE; c <= cEnd; c++) {
+            for (int r = rNE; r <= rEnd; r++)
+                for (int c = cNE; c >= cEnd; c--) {
                     if (img[r][c] == id)
                         isSquare = false;
                 }
@@ -657,7 +658,7 @@ public class FeatureExtractor
             /** find boundary for SW corner **/
             rEnd = rNW; cEnd = cSE;
             for (int r = rSW; r >= rNW; r--) {
-                if (img[r][cSE] == id) {
+                if (img[r][cSW] == id) {
                     rEnd = r + 1;
                     break;
                 }
@@ -667,6 +668,9 @@ public class FeatureExtractor
                     cEnd = c - 1;
                     break;
                 }
+            }
+            if (building == 12) {
+                System.out.printf("rEnd: %d   cEnd: %d\n", rEnd, cEnd);
             }
             /** scan the area to see if all pixels are part of the building **/
             isSquare = true;
@@ -717,6 +721,14 @@ public class FeatureExtractor
             } else if (NWIsSquare && SWIsSquare && !NEIsSquare && !SEIsSquare) {
                 feature[32].add(building);
             }
+            if (building == 12) {
+                System.out.println("NW " + NWIsSquare + "   NE " + NEIsSquare);
+                System.out.println("SW " + SWIsSquare + "   SE " + SEIsSquare);
+            }
+
+
+
+
         } else if (numOfCornersOff == 2) {
             /** find boundary for SW corner **/
             int rEnd = rNW, cEnd = cSE;
