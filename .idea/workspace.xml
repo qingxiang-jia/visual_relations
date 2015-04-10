@@ -28,8 +28,8 @@
       <file leaf-file-name="SpacialRelationExtractor.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/SpacialRelationExtractor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="1.9656652">
-              <caret line="167" column="23" selection-start-line="167" selection-start-column="23" selection-end-line="167" selection-end-column="23" />
+            <state vertical-scroll-proportion="-2.5332618">
+              <caret line="61" column="0" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -563,7 +563,13 @@
       <option name="project" value="LOCAL" />
       <updated>1428706781473</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="Revised parameters for South, North">
+      <created>1428707128672</created>
+      <option name="number" value="00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1428707128672</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -632,7 +638,8 @@
     <MESSAGE value="Added extractNorth, fully tested" />
     <MESSAGE value="Added extractSouth, fully tested" />
     <MESSAGE value="Added extractWest, fully tested" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added extractWest, fully tested" />
+    <MESSAGE value="Revised parameters for South, North" />
+    <option name="LAST_COMMIT_MESSAGE" value="Revised parameters for South, North" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1027,8 +1034,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/SpacialRelationExtractor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.9656652">
-          <caret line="167" column="23" selection-start-line="167" selection-start-column="23" selection-end-line="167" selection-end-column="23" />
+        <state vertical-scroll-proportion="-2.5332618">
+          <caret line="61" column="0" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

@@ -57,13 +57,14 @@ public class SpacialRelationExtractor
             extractNorth(building);
             extractSouth(building);
             extractWest(building);
+            extractEast(building);
         }
 
         // print result
         for (int i = 0; i < numOfBuilding; i++) {
             System.out.println("building:" + i);
-            for (int j = 0; j < north[i].length; j++) {
-                if (north[i][j]) {
+            for (int j = 0; j < east[i].length; j++) {
+                if (east[i][j]) {
                     System.out.printf(" "+j+" ");
                     System.out.print("T\n");
                 }
@@ -147,7 +148,7 @@ public class SpacialRelationExtractor
      *             |
      *             V scan south
      * Above is the MBR, initialize a scan whose width is roughly (cMax - cMin) to the
-     * north, any building touched in this scan will be T in South(S, T).
+     * south, any building touched in this scan will be T in South(S, T).
      * @param building
      */
     private void extractSouth(int building)
@@ -184,7 +185,7 @@ public class SpacialRelationExtractor
             }
 
         /** save result **/
-        for (int i = 0; i < north[building].length; i++) {
+        for (int i = 0; i < south[building].length; i++) {
             if (southOf.contains(i)) {
                 south[building][i] = true;
             } // no else, all values initialized to false
@@ -203,7 +204,7 @@ public class SpacialRelationExtractor
      * |                      |
      * rMax, cMin----rMax, cMax
      * Above is the MBR, initialize a scan whose width is roughly (rMax - rMin) to the
-     * north, any building touched in this scan will be T in South(S, T).
+     * west, any building touched in this scan will be T in West(S, T).
      * @param building
      */
     private void extractWest(int building)
@@ -213,7 +214,7 @@ public class SpacialRelationExtractor
         int width = rowMax - rowMin + 1;
 
         int scanBegin = rowMin, scanEnd = rowMax;
-        int colBegin = colMax - 10;
+        int colBegin = colMin - 10;
         if (colBegin < 0)
             colBegin = 0;
 
@@ -240,9 +241,65 @@ public class SpacialRelationExtractor
             }
 
         /** save result **/
-        for (int i = 0; i < north[building].length; i++) {
+        for (int i = 0; i < west[building].length; i++) {
             if (westOf.contains(i)) {
                 west[building][i] = true;
+            } // no else, all values initialized to false
+        }
+    }
+
+    /**
+     * Extracts East(S, T) for each building.
+     * Algorithm:
+     * rMin, cMin----rMin, cMax
+     * |                      |
+     * |                      |
+     * |                      |
+     * |                      |
+     * |                      |
+     * |                      |
+     * rMax, cMin----rMax, cMax
+     * Above is the MBR, initialize a scan whose width is roughly (rMax - rMin) to the
+     * east, any building touched in this scan will be T in East(S, T).
+     * @param building
+     */
+    private void extractEast(int building)
+    {
+        int rowMin = rMin[building], rowMax = rMax[building];
+        int colMin = cMin[building], colMax = cMax[building];
+        int width = rowMax - rowMin + 1;
+
+        int scanBegin = rowMin, scanEnd = rowMax;
+        int colBegin = colMax + 10;
+        if (colBegin > img[0].length - 1)
+            colBegin = img[0].length - 1;
+
+        scanBegin -= 0.01 * width; // widen the scan width a little bit
+        if (scanBegin < 0)
+            scanBegin = 0;
+
+        scanEnd += 0.01 * width; // widen the scan width a little bit
+        if (scanEnd > img.length)
+            scanEnd = img.length - 1;
+
+        /** scan east **/
+        Set<Integer> eastOf = new HashSet<>();
+        for (int r = scanBegin; r < scanEnd; r += 10)
+            for (int c = colBegin; c < img[0].length; c += 5) {
+                if (img[r][c] != 0) {
+                    /** check the slope formed by two centers of mass **/
+                    int x1 = centroids[building][1], y1 = centroids[building][0];
+                    int x2 = centroids[img[r][c] - 1][1], y2 = centroids[img[r][c] - 1][0];
+                    float m = getSlopeUpsideDown(x1, y1, x2, y2);
+                    if ((Math.abs(m) < 1))
+                        eastOf.add(img[r][c] - 1);
+                }
+            }
+
+        /** save result **/
+        for (int i = 0; i < east[building].length; i++) {
+            if (eastOf.contains(i)) {
+                east[building][i] = true;
             } // no else, all values initialized to false
         }
     }
