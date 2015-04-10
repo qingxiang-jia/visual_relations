@@ -74,6 +74,7 @@ public class FeatureExtractor
             featureG(i);
             featureH(i);
             featureI(i);
+            featureJ(i);
         }
         // display results
         for (Set<Integer> set : feature) {
@@ -374,7 +375,6 @@ public class FeatureExtractor
             if (curr != prev) {
                 prev = curr;
                 flips++;
-                System.out.println(flips);
             }
         }
         dentsNorth = flips / 2;
@@ -400,7 +400,6 @@ public class FeatureExtractor
             if (curr != prev) {
                 prev = curr;
                 flips++;
-                System.out.println(flips);
             }
         }
         dentsSouth = flips / 2;
@@ -425,7 +424,6 @@ public class FeatureExtractor
             if (curr != prev) {
                 prev = curr;
                 flips++;
-                System.out.println(flips);
             }
         }
         dentsWest = flips / 2;
@@ -451,7 +449,6 @@ public class FeatureExtractor
             if (curr != prev) {
                 prev = curr;
                 flips++;
-                System.out.println(flips);
             }
         }
         dentsEast = flips / 2;
@@ -512,6 +509,94 @@ public class FeatureExtractor
             numOfBumps = flips / 2;
             if (numOfBumps == 1)
                 feature[23].add(building);
+        }
+    }
+
+    /**
+     * Extracts feature 24, 25, 26, 27.
+     * overall upside down L            24
+     * overall C reversed left to right 25
+     * overall L                        26
+     * overall L reversed left to right 27
+     * @param building
+     * Algorithm: having eight pin points spread evenly in the building image, and see which of them match.
+     * a b c d
+     * e f g h
+     * i j k l
+     * m n o p
+     * 8 points, map them onto the image and see how many (and which) of them match the image, so that we get
+     * an approximate shape of the image.
+     */
+    private void featureJ(int building)
+    {
+        int id = building + 1;
+        int H = cMax[building] - cMin[building]; // horizontal length
+        int V = rMax[building] - rMin[building]; // vertical length
+        int R = rMin[building], C = cMin[building]; // left upper corner of the MBR
+        /** set up pin points **/
+        boolean a = false, b = false, c = false, d = false,
+                e = false, f = false, g = false, h = false,
+                i = false, j = false, k = false, l = false,
+                m = false, n = false, o = false, p = false;
+        if (img[(int) (R + 0.1 * V)][(int) (C + 0.2 * H)] == id) {
+            a = true;
+        }
+        if (img[(int) (R + 0.1 * V)][(int) (C + 0.4 * H)] == id) {
+            b = true;
+        }
+        if (img[(int) (R + 0.1 * V)][(int) (C + 0.6 * H)] == id) {
+            c = true;
+        }
+        if (img[(int) (R + 0.1 * V)][(int) (C + 0.8 * H)] == id) {
+            d = true;
+        }
+        if (img[(int) (R + 0.4 * V)][(int) (C + 0.2 * H)] == id) {
+            e = true;
+        }
+        if (img[(int) (R + 0.4 * V)][(int) (C + 0.4 * H)] == id) {
+            f = true;
+        }
+        if (img[(int) (R + 0.4 * V)][(int) (C + 0.6 * H)] == id) {
+            g = true;
+        }
+        if (img[(int) (R + 0.6 * V)][(int) (C + 0.8 * H)] == id) {
+            h = true;
+        }
+        if (img[(int) (R + 0.6 * V)][(int) (C + 0.2 * H)] == id) {
+            i = true;
+        }
+        if (img[(int) (R + 0.6 * V)][(int) (C + 0.4 * H)] == id) {
+            j = true;
+        }
+        if (img[(int) (R + 0.6 * V)][(int) (C + 0.6 * H)] == id) {
+            k = true;
+        }
+        if (img[(int) (R + 0.6 * V)][(int) (C + 0.8 * H)] == id) {
+            l = true;
+        }
+        if (img[(int) (R + 0.9 * V)][(int) (C + 0.2 * H)] == id) {
+            m = true;
+        }
+        if (img[(int) (R + 0.9 * V)][(int) (C + 0.4 * H)] == id) {
+            n = true;
+        }
+        if (img[(int) (R + 0.9 * V)][(int) (C + 0.6 * H)] == id) {
+            o = true;
+        }
+        if (img[(int) (R + 0.9 * V)][(int) (C + 0.8 * H)] == id) {
+            p = true;
+        }
+        /** decide general shape **/
+        /** see if it's an upside down L shaped building: d, c, b, a, e, i, m must be true;
+         * g, h, k, l, o, p must be false; the rest are optional **/
+        if ((d && c && b && a && e && i && m) && (!g && !h && !k && !l && !o && !p)) {
+            feature[24].add(building);
+        } else if ((a && b && c && d && h && l && p && o && n && m) && (!e && !f && !i && !j)) {
+            feature[25].add(building);
+        } else if ((a && e && i && m && n && o && p) && (!c && !d)) {
+            feature[26].add(building);
+        } else if ((d && h && l && p && o && n && m) && (!a && !b && !e && !f)) {
+            feature[27].add(building);
         }
     }
 
