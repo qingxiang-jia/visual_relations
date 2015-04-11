@@ -65,8 +65,8 @@ public class SpacialRelationExtractor
         // print result
         for (int i = 0; i < numOfBuilding; i++) {
             System.out.println("building:" + i);
-            for (int j = 0; j < near[i].length; j++) {
-                if (near[i][j]) {
+            for (int j = 0; j < east[i].length; j++) {
+                if (east[i][j]) {
                     System.out.printf(" "+j+" ");
                     System.out.print("T\n");
                 }
@@ -112,8 +112,7 @@ public class SpacialRelationExtractor
         if (scanEnd > img[0].length)
             scanEnd = img[0].length - 1;
 
-        /** scan north **/
-        Set<Integer> northOf = new HashSet<>(); //todo: don't really need this
+        /** scan north & save results **/
         for (int r = rowBegin; r >= 0; r -= 10)
             for (int c = scanBegin; c <= scanEnd; c += 5) {
                 if (img[r][c] != 0) {
@@ -122,16 +121,9 @@ public class SpacialRelationExtractor
                     int x2 = centroids[img[r][c] - 1][1], y2 = centroids[img[r][c] - 1][0];
                     float m = getSlopeUpsideDown(x1, y1, x2, y2);
                     if (!(Math.abs(m) < 1))
-                        northOf.add(img[r][c] - 1);
+                        north[building][img[r][c] - 1] = true;
                 }
             }
-
-        /** save result **/
-        for (int i = 0; i < north[building].length; i++) {
-            if (northOf.contains(i)) {
-                north[building][i] = true;
-            } // no else, all values initialized to false
-        }
     }
 
     /**
@@ -172,8 +164,7 @@ public class SpacialRelationExtractor
         if (scanEnd > img[0].length)
             scanEnd = img[0].length - 1;
 
-        /** scan south **/
-        Set<Integer> southOf = new HashSet<>(); //todo: don't really need this
+        /** scan south & save results **/
         for (int r = rowBegin; r < img.length; r += 10)
             for (int c = scanBegin; c <= scanEnd; c += 5) {
                 if (img[r][c] != 0) {
@@ -182,16 +173,9 @@ public class SpacialRelationExtractor
                     int x2 = centroids[img[r][c] - 1][1], y2 = centroids[img[r][c] - 1][0];
                     float m = getSlopeUpsideDown(x1, y1, x2, y2);
                     if (!(Math.abs(m) < 1))
-                        southOf.add(img[r][c] - 1);
+                        south[building][img[r][c] - 1] = true;
                 }
             }
-
-        /** save result **/
-        for (int i = 0; i < south[building].length; i++) {
-            if (southOf.contains(i)) {
-                south[building][i] = true;
-            } // no else, all values initialized to false
-        }
     }
 
     /**
@@ -228,8 +212,7 @@ public class SpacialRelationExtractor
         if (scanEnd > img.length)
             scanEnd = img.length - 1;
 
-        /** scan west **/
-        Set<Integer> westOf = new HashSet<>(); //todo: don't really need this
+        /** scan west & save results **/
         for (int r = scanBegin; r < scanEnd; r += 10)
             for (int c = colBegin; c >= 0; c -= 5) {
                 if (img[r][c] != 0) {
@@ -238,16 +221,9 @@ public class SpacialRelationExtractor
                     int x2 = centroids[img[r][c] - 1][1], y2 = centroids[img[r][c] - 1][0];
                     float m = getSlopeUpsideDown(x1, y1, x2, y2);
                     if ((Math.abs(m) < 1))
-                        westOf.add(img[r][c] - 1);
+                        west[building][img[r][c] - 1] = true;
                 }
             }
-
-        /** save result **/
-        for (int i = 0; i < west[building].length; i++) {
-            if (westOf.contains(i)) {
-                west[building][i] = true;
-            } // no else, all values initialized to false
-        }
     }
 
     /**
@@ -284,8 +260,7 @@ public class SpacialRelationExtractor
         if (scanEnd > img.length)
             scanEnd = img.length - 1;
 
-        /** scan east **/
-        Set<Integer> eastOf = new HashSet<>(); //todo: don't really need this
+        /** scan east & save results **/
         for (int r = scanBegin; r < scanEnd; r += 10)
             for (int c = colBegin; c < img[0].length; c += 5) {
                 if (img[r][c] != 0) {
@@ -294,16 +269,9 @@ public class SpacialRelationExtractor
                     int x2 = centroids[img[r][c] - 1][1], y2 = centroids[img[r][c] - 1][0];
                     float m = getSlopeUpsideDown(x1, y1, x2, y2);
                     if ((Math.abs(m) < 1))
-                        eastOf.add(img[r][c] - 1);
+                        east[building][img[r][c] - 1] = true;
                 }
             }
-
-        /** save result **/
-        for (int i = 0; i < east[building].length; i++) {
-            if (eastOf.contains(i)) {
-                east[building][i] = true;
-            } // no else, all values initialized to false
-        }
     }
 
     /**

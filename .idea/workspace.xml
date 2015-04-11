@@ -28,8 +28,8 @@
       <file leaf-file-name="SpacialRelationExtractor.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/SpacialRelationExtractor.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.26824033">
-              <caret line="363" column="34" selection-start-line="363" selection-start-column="34" selection-end-line="363" selection-end-column="34" />
+            <state vertical-scroll-proportion="-0.74034333">
+              <caret line="262" column="37" selection-start-line="262" selection-start-column="37" selection-end-line="262" selection-end-column="37" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -575,7 +575,13 @@
       <option name="project" value="LOCAL" />
       <updated>1428707780497</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="Added extractNear, tested. Much of the effort were devoted to make the computer based judge of &quot;near&quot; to be aligned with human's understanding of &quot;near&quot;.">
+      <created>1428713950465</created>
+      <option name="number" value="00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1428713950465</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -620,7 +626,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Now it can compute and display area for each building." />
     <MESSAGE value="Now it can compute and display centroid for each building in the map. I am tired. Call it day. GitHub, hang out; China, shame on you!" />
     <MESSAGE value="Redesigned features to describe the buildings" />
     <MESSAGE value="Added feature to display building ID on graph" />
@@ -645,7 +650,8 @@
     <MESSAGE value="Added extractWest, fully tested" />
     <MESSAGE value="Revised parameters for South, North" />
     <MESSAGE value="Added extractSouth, tested." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added extractSouth, tested." />
+    <MESSAGE value="Added extractNear, tested. Much of the effort were devoted to make the computer based judge of &quot;near&quot; to be aligned with human's understanding of &quot;near&quot;." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added extractNear, tested. Much of the effort were devoted to make the computer based judge of &quot;near&quot; to be aligned with human's understanding of &quot;near&quot;." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1040,8 +1046,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/SpacialRelationExtractor.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.26824033">
-          <caret line="363" column="34" selection-start-line="363" selection-start-column="34" selection-end-line="363" selection-end-column="34" />
+        <state vertical-scroll-proportion="-0.74034333">
+          <caret line="262" column="37" selection-start-line="262" selection-start-column="37" selection-end-line="262" selection-end-column="37" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
