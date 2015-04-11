@@ -62,16 +62,16 @@ public class SpacialRelationExtractor
             extractNear(building);
         }
 
-        // print result
-        for (int i = 0; i < numOfBuilding; i++) {
-            System.out.println("building:" + i);
-            for (int j = 0; j < east[i].length; j++) {
-                if (east[i][j]) {
-                    System.out.printf(" "+j+" ");
-                    System.out.print("T\n");
-                }
-            }
-        }
+//        // print result
+//        for (int i = 0; i < numOfBuilding; i++) {
+//            System.out.println("building:" + i);
+//            for (int j = 0; j < east[i].length; j++) {
+//                if (east[i][j]) {
+//                    System.out.printf(" "+j+" ");
+//                    System.out.print("T\n");
+//                }
+//            }
+//        }
     }
 
     /**
@@ -384,55 +384,12 @@ public class SpacialRelationExtractor
         SpacialRelationExtractor srExtractor = new SpacialRelationExtractor(MBRCoordinates, area, centroids, img);
 
         srExtractor.extract();
+
+        /** serialize results **/
+        IOUtil.serialize("north.ser", srExtractor.north);
+        IOUtil.serialize("south.ser", srExtractor.south);
+        IOUtil.serialize("west.ser", srExtractor.west);
+        IOUtil.serialize("east.ser", srExtractor.east);
+        IOUtil.serialize("near.ser", srExtractor.near);
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
