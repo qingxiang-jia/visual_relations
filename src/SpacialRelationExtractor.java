@@ -45,6 +45,7 @@ public class SpacialRelationExtractor
         south = new boolean[area.length][area.length];
         west = new boolean[area.length][area.length];
         east = new boolean[area.length][area.length];
+        near = new boolean[area.length][area.length];
     }
 
     /**
@@ -58,13 +59,14 @@ public class SpacialRelationExtractor
             extractSouth(building);
             extractWest(building);
             extractEast(building);
+            extractNear(building);
         }
 
         // print result
         for (int i = 0; i < numOfBuilding; i++) {
             System.out.println("building:" + i);
-            for (int j = 0; j < east[i].length; j++) {
-                if (east[i][j]) {
+            for (int j = 0; j < near[i].length; j++) {
+                if (near[i][j]) {
                     System.out.printf(" "+j+" ");
                     System.out.print("T\n");
                 }
@@ -111,7 +113,7 @@ public class SpacialRelationExtractor
             scanEnd = img[0].length - 1;
 
         /** scan north **/
-        Set<Integer> northOf = new HashSet<>();
+        Set<Integer> northOf = new HashSet<>(); //todo: don't really need this
         for (int r = rowBegin; r >= 0; r -= 10)
             for (int c = scanBegin; c <= scanEnd; c += 5) {
                 if (img[r][c] != 0) {
@@ -171,7 +173,7 @@ public class SpacialRelationExtractor
             scanEnd = img[0].length - 1;
 
         /** scan south **/
-        Set<Integer> southOf = new HashSet<>();
+        Set<Integer> southOf = new HashSet<>(); //todo: don't really need this
         for (int r = rowBegin; r < img.length; r += 10)
             for (int c = scanBegin; c <= scanEnd; c += 5) {
                 if (img[r][c] != 0) {
@@ -227,7 +229,7 @@ public class SpacialRelationExtractor
             scanEnd = img.length - 1;
 
         /** scan west **/
-        Set<Integer> westOf = new HashSet<>();
+        Set<Integer> westOf = new HashSet<>(); //todo: don't really need this
         for (int r = scanBegin; r < scanEnd; r += 10)
             for (int c = colBegin; c >= 0; c -= 5) {
                 if (img[r][c] != 0) {
@@ -283,7 +285,7 @@ public class SpacialRelationExtractor
             scanEnd = img.length - 1;
 
         /** scan east **/
-        Set<Integer> eastOf = new HashSet<>();
+        Set<Integer> eastOf = new HashSet<>(); //todo: don't really need this
         for (int r = scanBegin; r < scanEnd; r += 10)
             for (int c = colBegin; c < img[0].length; c += 5) {
                 if (img[r][c] != 0) {
@@ -304,6 +306,17 @@ public class SpacialRelationExtractor
         }
     }
 
+    /**
+     * Returns the slope of given two points. Notice that the vertical coordinate actually
+     * increases from top to bottom, therefore, the method has been named "...UpsideDown"
+     * for this reason. Also, the calculation is slightly altered due to the nature the
+     * vertical coordinate.
+     * @param x1 column
+     * @param y1 row
+     * @param x2 ..
+     * @param y2 .
+     * @return
+     */
     private float getSlopeUpsideDown(int x1, int y1, int x2, int y2)
     {
         if (x2 - x1 == 0) {
@@ -313,6 +326,82 @@ public class SpacialRelationExtractor
                 return -Float.MAX_VALUE;
         }
         return (-((float) y2 - y1)) / (x2 - x1);
+    }
+
+    /**
+     * Extracts the Near(S, T) relationship.
+     * Algorithm: increase the MBR by a constant factor to get a new bounding box. Scan through
+     * the new bounding box to see if there is any building in it. The side of the bounding box
+     * depends on the side of MBR which depends on the shape and size of the building.
+     * rMin, cMin----rMin, cMax
+     * |                      |
+     * |                      |
+     * |                      |
+     * |                      |
+     * |                      |
+     * |                      |
+     * rMax, cMin----rMax, cMax
+     * @param building
+     */
+    private void extractNear(int building)
+    {
+        final float STRETCH = 0.55f;
+        int id = building + 1;
+        int rowMin = rMin[building], rowMax = rMax[building];
+        int colMin = cMin[building], colMax = cMax[building];
+        int horizontal = colMax - colMin, vertical = rowMax - rowMin;
+        int rowChange, colChange;
+        if (vertical <= 15)
+            rowChange = (int) (vertical * (1 + 2f * STRETCH)) / 2;
+        else if (vertical <= 50)
+            rowChange = (int) (vertical * (1 + STRETCH)) / 2;
+        else if (vertical <= 250)
+            rowChange = (int) (vertical * (1 + 0.2f * STRETCH)) / 2;
+        else
+            rowChange = (int) (vertical * (0.8f * STRETCH)) / 2;
+        if (vertical <= 15)
+            colChange = (int) (horizontal * (1 + 2f * STRETCH)) / 2;
+        else if (horizontal <= 50)
+            colChange = (int) (horizontal * (1 + STRETCH)) / 2;
+        else if (horizontal <= 250)
+            colChange = (int) (horizontal * (1 + 0.2f * STRETCH)) / 2;
+        else
+            colChange = (int) (horizontal * (0.8f * STRETCH)) / 2;
+        if (rowChange < colChange) { // make the bounding box closer to a square
+            rowChange += 0.4f * (colChange - rowChange);
+        } else if (rowChange > colChange) {
+            colChange += 0.4f * (rowChange - colChange);
+        }
+
+        /** redefine scan boundaries **/
+        int rowBegin = rowMin - rowChange;
+        if (rowBegin < 0)
+            rowBegin = 0;
+
+        int rowEnd = rowMax + rowChange;
+        if (rowEnd > img.length - 1)
+            rowEnd = img.length - 1;
+
+        int colBegin = colMin - colChange;
+        if (colBegin < 0)
+            colBegin = 0;
+
+        int colEnd = colMax + colChange;
+        if (colEnd > img[0].length - 1)
+            colEnd = img[0].length - 1;
+
+        if (building == 7) {
+            System.out.println("rowChange:" + rowChange + " colChange:" + colChange);
+            System.out.println("rowBegin:" + rowBegin + " rowEnd:" + rowEnd + " colBegin:" + colBegin + " colEnd:" + colEnd);
+        }
+
+        /** scan the new bounding box & save results **/
+        for (int r = rowBegin; r <= rowEnd; r++)
+            for (int c = colBegin; c <= colEnd; c++) {
+                if (img[r][c] != 0 && img[r][c] != id && !near[building][img[r][c] - 1]) {
+                    near[building][img[r][c] - 1] = true;
+                }
+            }
     }
 
     public static void main(String[] args)
