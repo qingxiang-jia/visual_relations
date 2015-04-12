@@ -62,4 +62,14 @@ public class ArrUtil
         }
         return minIndex;
     }
+
+    public static int countTrue(boolean[] arr)
+    {
+        int cnt = 0;
+        for (boolean elem : arr) {
+            if (elem)
+                cnt++;
+        }
+        return cnt;
+    }
 }

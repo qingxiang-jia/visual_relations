@@ -74,32 +74,16 @@ public class InfluenceMapping
 //        }
 
         // print mapped count
-//        for (int r = 0; r < img.length; r++) {
-//            for (int c = 0; c < img[0].length; c++) {
+        for (int r = 0; r < img.length; r++) {
+            for (int c = 0; c < img[0].length; c++) {
 //                System.out.printf("N:%d S:%d W:%d E:%d Near:%d\n", countTrue(mappedNorth[r][c]), countTrue(mappedSouth[r][c]),
 //                        countTrue(mappedWest[r][c]), countTrue(mappedEast[r][c]), countTrue(mappedNear[r][c]));
-//            }
-//            System.out.println();
-//        }
-    }
-
-    private boolean noTrue(boolean[] arr)
-    {
-        for (boolean elem : arr) {
-            if (elem)
-                return false;
+                if (ArrUtil.countTrue(mappedNorth[r][c]) == 0 && ArrUtil.countTrue(mappedSouth[r][c]) == 0 &&
+                        ArrUtil.countTrue(mappedWest[r][c]) == 0 && ArrUtil.countTrue(mappedEast[r][c]) == 0)
+                    System.out.printf("%d %d \n", r, c);
+            }
+            System.out.println();
         }
-        return true;
-    }
-
-    private int countTrue(boolean[] arr)
-    {
-        int cnt = 0;
-        for (boolean elem : arr) {
-            if (elem)
-                cnt++;
-        }
-        return cnt;
     }
 
     /**
