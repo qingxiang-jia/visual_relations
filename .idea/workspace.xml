@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b665257b-87ed-48a3-a0ad-76e35a455ade" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/SRExtractorPixel.java" afterPath="$PROJECT_DIR$/src/SRExtractorPixel.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/InfluenceMapping.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="assn3.iws" />
@@ -37,11 +37,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SRExtractorPixel.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/SRExtractorPixel.java">
+      <file leaf-file-name="InfluenceMapping.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/InfluenceMapping.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.84572786">
-              <caret line="80" column="36" selection-start-line="80" selection-start-column="36" selection-end-line="80" selection-end-column="36" />
+            <state vertical-scroll-proportion="0.11867089">
+              <caret line="10" column="4" selection-start-line="10" selection-start-column="4" selection-end-line="10" selection-end-column="4" />
               <folding />
             </state>
           </provider>
@@ -104,6 +104,7 @@
         <option value="$PROJECT_DIR$/src/TransitiveReduction.java" />
         <option value="$PROJECT_DIR$/src/SpacialRelationExtractor.java" />
         <option value="$PROJECT_DIR$/src/SRExtractorPixel.java" />
+        <option value="$PROJECT_DIR$/src/InfluenceMapping.java" />
       </list>
     </option>
   </component>
@@ -638,7 +639,13 @@
       <option name="project" value="LOCAL" />
       <updated>1428856068458</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="Pause SRExtractorPixel.">
+      <created>1428859280394</created>
+      <option name="number" value="00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1428859280394</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -659,7 +666,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19575115" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19575115" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -683,7 +690,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Totally rewrote FeatureExtractor under newly designed features (not finished). I will call it a day." />
     <MESSAGE value="Added IO convenience methods. Start debugging feature extractor" />
     <MESSAGE value="FeatureExtractor framework done, tested, the rest is just adding more feature detections." />
     <MESSAGE value="Added feature group C, tested." />
@@ -708,7 +714,8 @@
     <MESSAGE value="Optimized code: faster and got rid of Set&lt;Integer&gt;." />
     <MESSAGE value="Finished transitive reduction, tested. I will go to sleep. Tomorrow will be a long day." />
     <MESSAGE value="Begin SRExtractorPixel." />
-    <option name="LAST_COMMIT_MESSAGE" value="Begin SRExtractorPixel." />
+    <MESSAGE value="Pause SRExtractorPixel." />
+    <option name="LAST_COMMIT_MESSAGE" value="Pause SRExtractorPixel." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -721,13 +728,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/Debug.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="12" column="39" selection-start-line="12" selection-start-column="39" selection-end-line="12" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/PGMReader.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1074,16 +1074,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/SpacialRelationExtractor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="51" column="33" selection-start-line="50" selection-start-column="4" selection-end-line="53" selection-end-column="25" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/TransitiveReduction.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1096,6 +1086,24 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.84572786">
           <caret line="80" column="36" selection-start-line="80" selection-start-column="36" selection-end-line="80" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/SpacialRelationExtractor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="51" column="33" selection-start-line="50" selection-start-column="4" selection-end-line="53" selection-end-column="25" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/InfluenceMapping.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.11867089">
+          <caret line="10" column="4" selection-start-line="10" selection-start-column="4" selection-end-line="10" selection-end-column="4" />
           <folding />
         </state>
       </provider>
