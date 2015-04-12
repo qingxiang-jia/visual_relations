@@ -52,12 +52,38 @@ public class SRExtractorPixel
      * Algorithm: similar to the building version of this method.
      * When scanning north, it starts certain distance north from this pixel,
      * a imaginary bar with certain width will scan north, any building touched
-     * int this scan will be north of this pixel.
+     * in this scan will be north of this pixel, except for ones whose centroid
+     * is not north of this pixel.
+     *
+     *              ^  scan north
+     *              |
+     * colBegin-----------colEnd
+     *              |
+     *              | offset
+     *              |
+     *            pixel
+     *
      * @param row
      * @param col
      */
     private void extractNorth(int row, int col)
     {
+        int colBegin = col - 20, colEnd = col + 20;
+        if (colBegin < 0)
+            colBegin = 0;
+        if (colEnd > img[0].length - 1)
+            colEnd = img[0].length - 1;
 
+        int rowBegin = row - 15, rowEnd = 0;
+        if (rowBegin < 0)
+            rowBegin = 0;
+
+        /** scan north & save result **/
+        for (int r = rowBegin; r >= rowEnd; r -= 10)
+            for (int c = colBegin; c <= colEnd; c += 5) {
+                if (img[r][c] != 0 && centroids[img[r][c] - 1][0] > row && !north[r][c][img[r][c] - 1]) {
+                    north[r][c][img[r][c] - 1] = true;
+                }
+            }
     }
 }
