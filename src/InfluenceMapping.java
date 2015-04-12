@@ -62,16 +62,25 @@ public class InfluenceMapping
             mapNear(building);
         }
 
-        // print not mapped pixels
-        for (int r = 0; r < img.length; r++) {
-            for (int c = 0; c < img[0].length; c++) {
-                if (noTrue(mappedNorth[r][c]) && noTrue(mappedSouth[r][c]) && noTrue(mappedWest[r][c]) && noTrue(mappedEast[r][c]))
-                    System.out.print("F");
-                else
-                    System.out.print("T");
-            }
-            System.out.println();
-        }
+//        // print not mapped pixels
+//        for (int r = 0; r < img.length; r++) {
+//            for (int c = 0; c < img[0].length; c++) {
+//                if (noTrue(mappedNorth[r][c]) && noTrue(mappedSouth[r][c]) && noTrue(mappedWest[r][c]) && noTrue(mappedEast[r][c]))
+//                    System.out.print("F");
+//                else
+//                    System.out.print("T");
+//            }
+//            System.out.println();
+//        }
+
+        // print mapped count
+//        for (int r = 0; r < img.length; r++) {
+//            for (int c = 0; c < img[0].length; c++) {
+//                System.out.printf("N:%d S:%d W:%d E:%d Near:%d\n", countTrue(mappedNorth[r][c]), countTrue(mappedSouth[r][c]),
+//                        countTrue(mappedWest[r][c]), countTrue(mappedEast[r][c]), countTrue(mappedNear[r][c]));
+//            }
+//            System.out.println();
+//        }
     }
 
     private boolean noTrue(boolean[] arr)
@@ -81,6 +90,16 @@ public class InfluenceMapping
                 return false;
         }
         return true;
+    }
+
+    private int countTrue(boolean[] arr)
+    {
+        int cnt = 0;
+        for (boolean elem : arr) {
+            if (elem)
+                cnt++;
+        }
+        return cnt;
     }
 
     /**
@@ -322,7 +341,11 @@ public class InfluenceMapping
 
         /** extract spacial relationships **/
         InfluenceMapping mapper = new InfluenceMapping(MBRCoordinates, area, centroids, img);
-
         mapper.map();
+//        IOUtil.serialize("mappedNorth.ser", mapper.mappedNorth);
+//        IOUtil.serialize("mappedSouth.ser", mapper.mappedSouth);
+//        IOUtil.serialize("mappedWest.ser", mapper.mappedWest);
+//        IOUtil.serialize("mappedEast.ser", mapper.mappedEast);
+//        IOUtil.serialize("mappedNear.ser", mapper.mappedNear);
     }
 }
