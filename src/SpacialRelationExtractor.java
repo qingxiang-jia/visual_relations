@@ -1,6 +1,3 @@
-import java.util.HashSet;
-import java.util.Set;
-
 /**
  * Generate pairwise spacial relationship between two buildings for all buildings
  * in the map, given an image file, MBR, center of mass, and area.
