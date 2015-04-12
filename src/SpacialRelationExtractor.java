@@ -72,6 +72,17 @@ public class SpacialRelationExtractor
 //                }
 //            }
 //        }
+
+        // print near
+        for (int building = 0; building < numOfBuilding; building++) {
+            for (int j = 0; j < numOfBuilding; j++) {
+                if (near[building][j])
+                    System.out.print("T");
+                else
+                    System.out.print("F");
+            }
+            System.out.println();
+        }
     }
 
     /**
