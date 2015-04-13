@@ -62,28 +62,17 @@ public class InfluenceMapping
             mapNear(building);
         }
 
-//        // print not mapped pixels
+//        // test print
 //        for (int r = 0; r < img.length; r++) {
 //            for (int c = 0; c < img[0].length; c++) {
-//                if (noTrue(mappedNorth[r][c]) && noTrue(mappedSouth[r][c]) && noTrue(mappedWest[r][c]) && noTrue(mappedEast[r][c]))
-//                    System.out.print("F");
-//                else
+//                if (mappedEast[r][c][18])
 //                    System.out.print("T");
+//                else
+//                    System.out.print(" ");
 //            }
 //            System.out.println();
 //        }
 
-        // print mapped count
-        for (int r = 0; r < img.length; r++) {
-            for (int c = 0; c < img[0].length; c++) {
-//                System.out.printf("N:%d S:%d W:%d E:%d Near:%d\n", countTrue(mappedNorth[r][c]), countTrue(mappedSouth[r][c]),
-//                        countTrue(mappedWest[r][c]), countTrue(mappedEast[r][c]), countTrue(mappedNear[r][c]));
-                if (ArrUtil.countTrue(mappedNorth[r][c]) == 0 && ArrUtil.countTrue(mappedSouth[r][c]) == 0 &&
-                        ArrUtil.countTrue(mappedWest[r][c]) == 0 && ArrUtil.countTrue(mappedEast[r][c]) == 0)
-                    System.out.printf("%d %d \n", r, c);
-            }
-            System.out.println();
-        }
     }
 
     /**

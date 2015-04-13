@@ -20,6 +20,7 @@ public class PixelMappingReduction
      * Store pruned spatial relationship for each pixel.
      */
     int[][][] reducedMapping; // [r][c][N S W E Near] -1 represents none, else the value is building id
+    Pixel[][][][][] reducedMappingInverse; // [N][S][W][E][Near]
 
     public PixelMappingReduction(int area[], boolean[][][] mappedNorth, boolean[][][] mappedSouth,
                                  boolean[][][] mappedWest, boolean[][][] mappedEast, boolean[][][] mappedNear)
@@ -38,6 +39,17 @@ public class PixelMappingReduction
         for (int r = 0; r < mappedNorth.length; r++)
             for (int c = 0; c < mappedNorth[0].length; c++) {
                 reduce(r, c);
+//                System.out.println(r + " " + c + " " + Arrays.toString(reducedMapping[r][c]));
+            }
+    }
+
+    public void createInverse()
+    {
+        reducedMappingInverse = new Pixel[area.length][area.length][area.length][area.length][area.length];
+        for (int r = 0; r < reducedMapping.length; r++)
+            for (int c = 0; c < reducedMapping[0].length; c++) {
+                reducedMappingInverse[reducedMapping[r][c][0]][reducedMapping[r][c][1]]
+                        [reducedMapping[r][c][2]][reducedMapping[r][c][3]][reducedMapping[r][c][4]] = new Pixel(r, c);
             }
     }
 
@@ -142,5 +154,7 @@ public class PixelMappingReduction
         PixelMappingReduction reducer = new PixelMappingReduction(area, mappedNorth, mappedSouth, mappedWest, mappedEast, mappedNear);
         reducer.reduce();
         IOUtil.serialize("reducedMapping.ser", reducer.reducedMapping);
+        reducer.createInverse();
+        IOUtil.serialize("reducedMappingInverse.ser", reducer.reducedMappingInverse);
     }
 }
