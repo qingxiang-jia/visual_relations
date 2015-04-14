@@ -2,8 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b665257b-87ed-48a3-a0ad-76e35a455ade" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/InfluenceMapping.java" afterPath="$PROJECT_DIR$/src/InfluenceMapping.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Compute.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/ReduceNear.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/PixelMappingReduction.java" afterPath="$PROJECT_DIR$/src/PixelMappingReduction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/TransitiveReduction.java" afterPath="$PROJECT_DIR$/src/TransitiveReduction.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="assn3.iws" />
@@ -26,11 +28,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="CampusMap.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/CampusMap.java">
+      <file leaf-file-name="TransitiveReduction.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/TransitiveReduction.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="32" column="0" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
+              <caret line="27" column="23" selection-start-line="27" selection-start-column="23" selection-end-line="27" selection-end-column="23" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ReduceNear.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/ReduceNear.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.4667382">
+              <caret line="29" column="21" selection-start-line="29" selection-start-column="21" selection-end-line="29" selection-end-column="21" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -38,44 +50,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="LangGen.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/LangGen.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="32" column="39" selection-start-line="32" selection-start-column="39" selection-end-line="32" selection-end-column="39" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Id2Name.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Id2Name.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="7" column="17" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
-              <folding>
-                <element signature="e#1099#1100#0" expanded="true" />
-                <element signature="e#1139#1140#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DrawingArea.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/DrawingArea.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="0" column="21" selection-start-line="0" selection-start-column="21" selection-end-line="0" selection-end-column="21" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PixelMappingReduction.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="PixelMappingReduction.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/PixelMappingReduction.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6137339">
-              <caret line="176" column="31" selection-start-line="176" selection-start-column="31" selection-end-line="176" selection-end-column="31" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="181" column="24" selection-start-line="181" selection-start-column="24" selection-end-line="181" selection-end-column="24" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -83,11 +62,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="InfluenceMapping.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/InfluenceMapping.java">
+      <file leaf-file-name="Compute.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Compute.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="197" column="16" selection-start-line="197" selection-start-column="16" selection-end-line="197" selection-end-column="16" />
+              <caret line="9" column="1" selection-start-line="9" selection-start-column="1" selection-end-line="9" selection-end-column="1" />
               <folding />
             </state>
           </provider>
@@ -123,7 +102,6 @@
         <option value="$PROJECT_DIR$/src/FeatureExtractor.java" />
         <option value="$PROJECT_DIR$/src/SRExtractorPixel.java" />
         <option value="$PROJECT_DIR$/src/SpacialRelationExtractor.java" />
-        <option value="$PROJECT_DIR$/src/TransitiveReduction.java" />
         <option value="$PROJECT_DIR$/src/ArrUtil.java" />
         <option value="$PROJECT_DIR$/src/IOUtil.java" />
         <option value="$PROJECT_DIR$/src/Pixel.java" />
@@ -136,7 +114,10 @@
         <option value="$PROJECT_DIR$/src/Test.java" />
         <option value="$PROJECT_DIR$/src/LangGen.java" />
         <option value="$PROJECT_DIR$/src/InfluenceMapping.java" />
+        <option value="$PROJECT_DIR$/src/TransitiveReduction.java" />
+        <option value="$PROJECT_DIR$/src/Compute.java" />
         <option value="$PROJECT_DIR$/src/PixelMappingReduction.java" />
+        <option value="$PROJECT_DIR$/src/ReduceNear.java" />
       </list>
     </option>
   </component>
@@ -236,22 +217,7 @@
     <property name="settings.editor.selected.configurable" value="terminal" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
   </component>
-  <component name="RunManager" selected="Application.CampusMap">
-    <configuration default="false" name="SpacialRelationExtractor" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <option name="MAIN_CLASS_NAME" value="SpacialRelationExtractor" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="assn3" />
-      <envs />
-      <method />
-    </configuration>
+  <component name="RunManager" selected="Application.ReduceNear">
     <configuration default="false" name="InfluenceMapping" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <output_file path="$USER_HOME$/Downloads/file" is_save="false" />
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
@@ -292,6 +258,36 @@
       <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" value="" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="assn3" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="TransitiveReduction" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="MAIN_CLASS_NAME" value="TransitiveReduction" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="assn3" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="ReduceNear" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="MAIN_CLASS_NAME" value="ReduceNear" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
       <option name="ENABLE_SWING_INSPECTOR" value="false" />
       <option name="ENV_VARIABLES" />
       <option name="PASS_PARENT_ENVS" value="true" />
@@ -446,18 +442,20 @@
       <listeners />
       <method />
     </configuration>
-    <list size="4">
-      <item index="0" class="java.lang.String" itemvalue="Application.SpacialRelationExtractor" />
-      <item index="1" class="java.lang.String" itemvalue="Application.InfluenceMapping" />
-      <item index="2" class="java.lang.String" itemvalue="Application.PixelMappingReduction" />
-      <item index="3" class="java.lang.String" itemvalue="Application.CampusMap" />
+    <list size="5">
+      <item index="0" class="java.lang.String" itemvalue="Application.InfluenceMapping" />
+      <item index="1" class="java.lang.String" itemvalue="Application.PixelMappingReduction" />
+      <item index="2" class="java.lang.String" itemvalue="Application.CampusMap" />
+      <item index="3" class="java.lang.String" itemvalue="Application.TransitiveReduction" />
+      <item index="4" class="java.lang.String" itemvalue="Application.ReduceNear" />
     </list>
     <recent_temporary>
-      <list size="4">
-        <item index="0" class="java.lang.String" itemvalue="Application.CampusMap" />
-        <item index="1" class="java.lang.String" itemvalue="Application.PixelMappingReduction" />
-        <item index="2" class="java.lang.String" itemvalue="Application.InfluenceMapping" />
-        <item index="3" class="java.lang.String" itemvalue="Application.SpacialRelationExtractor" />
+      <list size="5">
+        <item index="0" class="java.lang.String" itemvalue="Application.ReduceNear" />
+        <item index="1" class="java.lang.String" itemvalue="Application.TransitiveReduction" />
+        <item index="2" class="java.lang.String" itemvalue="Application.CampusMap" />
+        <item index="3" class="java.lang.String" itemvalue="Application.PixelMappingReduction" />
+        <item index="4" class="java.lang.String" itemvalue="Application.InfluenceMapping" />
       </list>
     </recent_temporary>
     <configuration name="&lt;template&gt;" type="WebApp" default="true" selected="false">
@@ -728,7 +726,13 @@
       <option name="project" value="LOCAL" />
       <updated>1429048996661</updated>
     </task>
-    <option name="localTasksCounter" value="43" />
+    <task id="LOCAL-00043" summary="Step 3 done">
+      <created>1429051361044</created>
+      <option name="number" value="00043" />
+      <option name="project" value="LOCAL" />
+      <updated>1429051361044</updated>
+    </task>
+    <option name="localTasksCounter" value="44" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -752,7 +756,7 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19575115" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25696594" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" x="104" y="667" width="650" height="311" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25696594" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" x="104" y="667" width="650" height="311" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -773,7 +777,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added feature group J, tested." />
     <MESSAGE value="Added feature group K, tested, bugs to fix. But I am too hungry." />
     <MESSAGE value="Added feature group K, tested. All bugs fixed. Now FeatureExtractor is finished." />
     <MESSAGE value="Finishing up." />
@@ -798,7 +801,8 @@
     <MESSAGE value="Realized need to change reduction algorithm to get better results." />
     <MESSAGE value="Bug found. ^ is not power :(" />
     <MESSAGE value="Improved Near" />
-    <option name="LAST_COMMIT_MESSAGE" value="Improved Near" />
+    <MESSAGE value="Step 3 done" />
+    <option name="LAST_COMMIT_MESSAGE" value="Step 3 done" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -811,13 +815,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/ShowImg.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="19" column="5" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/ImageReader.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1047,14 +1044,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/TransitiveReduction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.27294305">
-          <caret line="23" column="24" selection-start-line="23" selection-start-column="24" selection-end-line="23" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/ArrUtil.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1206,10 +1195,36 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/TransitiveReduction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="27" column="23" selection-start-line="27" selection-start-column="23" selection-end-line="27" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Compute.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="9" column="1" selection-start-line="9" selection-start-column="1" selection-end-line="9" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/PixelMappingReduction.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6137339">
-          <caret line="176" column="31" selection-start-line="176" selection-start-column="31" selection-end-line="176" selection-end-column="31" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="181" column="24" selection-start-line="181" selection-start-column="24" selection-end-line="181" selection-end-column="24" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ReduceNear.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4667382">
+          <caret line="29" column="21" selection-start-line="29" selection-start-column="21" selection-end-line="29" selection-end-column="21" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

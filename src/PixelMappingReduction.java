@@ -166,13 +166,13 @@ public class PixelMappingReduction
         /** find two buildings with two lowest distances **/ // there are better ways, but catching the deadline
         List<IntTuple> tuples = new ArrayList<>();
         if (northBuilding != -1)
-            tuples.add(new IntTuple(northBuilding, 0, computeDist(row, col, centroids[northBuilding][0], centroids[northBuilding][1])));
+            tuples.add(new IntTuple(northBuilding, 0, Compute.dist(row, col, centroids[northBuilding][0], centroids[northBuilding][1])));
         if (southBuilding != -1)
-            tuples.add(new IntTuple(southBuilding, 1, computeDist(row, col, centroids[southBuilding][0], centroids[southBuilding][1])));
+            tuples.add(new IntTuple(southBuilding, 1, Compute.dist(row, col, centroids[southBuilding][0], centroids[southBuilding][1])));
         if (westBuilding != -1)
-            tuples.add(new IntTuple(westBuilding, 2, computeDist(row, col, centroids[westBuilding][0], centroids[westBuilding][1])));
+            tuples.add(new IntTuple(westBuilding, 2, Compute.dist(row, col, centroids[westBuilding][0], centroids[westBuilding][1])));
         if (eastBuilding != -1)
-            tuples.add(new IntTuple(eastBuilding, 3, computeDist(row, col, centroids[eastBuilding][0], centroids[eastBuilding][1])));
+            tuples.add(new IntTuple(eastBuilding, 3, Compute.dist(row, col, centroids[eastBuilding][0], centroids[eastBuilding][1])));
         Collections.sort(tuples); // sort by distance in ascending order
         if (tuples.size() != 0)
             reducedMapping[row][col][tuples.get(0).b] = tuples.get(0).a + 1;
@@ -212,7 +212,7 @@ public class PixelMappingReduction
         int minDistSoFar = Integer.MAX_VALUE;
         int building = -1;
         for (int i = 0; i < arr.length; i++) {
-            int dist = computeDist(row, col, centroids[i][0], centroids[i][1]);
+            int dist = Compute.dist(row, col, centroids[i][0], centroids[i][1]);
             if (arr[i] && dist < minDistSoFar) {
                 building = i;
                 minDistSoFar = dist;
@@ -230,7 +230,7 @@ public class PixelMappingReduction
         int minDistSoFar = Integer.MAX_VALUE;
         int building = -1;
         for (int i = 0; i < centroids.length; i++) {
-            int dist = computeDist(row, col, centroids[i][0], centroids[i][1]);
+            int dist = Compute.dist(row, col, centroids[i][0], centroids[i][1]);
             if (dist < minDistSoFar) {
                 building = i;
                 minDistSoFar = dist;
@@ -247,10 +247,7 @@ public class PixelMappingReduction
             return -1;
     }
 
-    private int computeDist(int row1, int col1, int row2, int col2)
-    {
-        return (int) Math.sqrt(Math.pow((row1 - row2), 2) + Math.pow((col1 - col2), 2)); // not ^!!
-    }
+
 
     public static void main(String[] args)
     {
