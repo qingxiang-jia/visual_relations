@@ -155,6 +155,14 @@ public class PixelMappingReduction
 //        System.out.println();
         int eastBuilding = findBuildingWithMinDist(mappedEast[row][col], row, col);
 
+//        if (row == 296 && col == 171) {
+//            System.out.printf("northbuilding: %d southbuilding: %d westbuilding: %d eastbuiling: %d\n", northBuilding, southBuilding, westBuilding, eastBuilding);
+//            System.out.println("north: " + Arrays.toString(mappedNorth[row][col]));
+//            System.out.println("south: " + Arrays.toString(mappedSouth[row][col]));
+//            System.out.println("west: " + Arrays.toString(mappedWest[row][col]));
+//            System.out.println("east: " + Arrays.toString(mappedEast[row][col]));
+//        }
+
         /** find two buildings with two lowest distances **/ // there are better ways, but catching the deadline
         List<IntTuple> tuples = new ArrayList<>();
         if (northBuilding != -1)
@@ -162,9 +170,9 @@ public class PixelMappingReduction
         if (southBuilding != -1)
             tuples.add(new IntTuple(southBuilding, 1, computeDist(row, col, centroids[southBuilding][0], centroids[southBuilding][1])));
         if (westBuilding != -1)
-                new IntTuple(westBuilding, 2, computeDist(row, col, centroids[westBuilding][0], centroids[westBuilding][1]));
+            tuples.add(new IntTuple(westBuilding, 2, computeDist(row, col, centroids[westBuilding][0], centroids[westBuilding][1])));
         if (eastBuilding != -1)
-                new IntTuple(eastBuilding, 3, computeDist(row, col, centroids[eastBuilding][0], centroids[eastBuilding][1]));
+            tuples.add(new IntTuple(eastBuilding, 3, computeDist(row, col, centroids[eastBuilding][0], centroids[eastBuilding][1])));
         Collections.sort(tuples); // sort by distance in ascending order
         if (tuples.size() != 0)
             reducedMapping[row][col][tuples.get(0).b] = tuples.get(0).a + 1;

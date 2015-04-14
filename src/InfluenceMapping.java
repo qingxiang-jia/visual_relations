@@ -114,6 +114,8 @@ public class InfluenceMapping
         for (int r = rowMin; r >= 0; r--)
             for (int c = scanBegin; c <= scanEnd; c++) {
                 mappedNorth[r][c][building] = true;
+//                if (building == 11)
+//                    System.out.println(r + " " + c);
             }
     }
 
@@ -193,7 +195,7 @@ public class InfluenceMapping
         /** scan west & save results **/
         for (int r = scanBegin; r < scanEnd; r++)
             for (int c = colMin; c >= 0; c--) {
-                    mappedWest[r][c][building] = true;
+                mappedWest[r][c][building] = true;
             }
     }
 
