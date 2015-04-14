@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b665257b-87ed-48a3-a0ad-76e35a455ade" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/PixelSet.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/CampusMap.java" afterPath="$PROJECT_DIR$/src/CampusMap.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/DrawingArea.java" afterPath="$PROJECT_DIR$/src/DrawingArea.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Pixel.java" afterPath="$PROJECT_DIR$/src/Pixel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/PixelMappingReduction.java" afterPath="$PROJECT_DIR$/src/PixelMappingReduction.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/TransitiveReduction.java" afterPath="$PROJECT_DIR$/src/TransitiveReduction.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Id2Name.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="assn3.iws" />
@@ -30,13 +25,26 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="CampusMap.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="CampusMap.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/CampusMap.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6276824">
+            <state vertical-scroll-proportion="0.0">
               <caret line="39" column="81" selection-start-line="39" selection-start-column="81" selection-end-line="39" selection-end-column="81" />
               <folding>
                 <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Id2Name.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/Id2Name.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.611588">
+              <caret line="38" column="33" selection-start-line="38" selection-start-column="33" selection-end-line="38" selection-end-column="33" />
+              <folding>
+                <element signature="e#1067#1068#0" expanded="true" />
+                <element signature="e#1107#1108#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -153,6 +161,7 @@
         <option value="$PROJECT_DIR$/src/PixelSet.java" />
         <option value="$PROJECT_DIR$/src/DrawingArea.java" />
         <option value="$PROJECT_DIR$/src/PixelMappingReduction.java" />
+        <option value="$PROJECT_DIR$/src/Id2Name.java" />
       </list>
     </option>
   </component>
@@ -725,7 +734,13 @@
       <option name="project" value="LOCAL" />
       <updated>1428887636126</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="GUI works well. Clouds work well too.">
+      <created>1429034885862</created>
+      <option name="number" value="00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1429034885862</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -770,7 +785,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added feature group F, tested." />
     <MESSAGE value="Added feature group G, tested." />
     <MESSAGE value="Removed debug code for feature group G." />
     <MESSAGE value="Added feature group H, tested." />
@@ -795,7 +809,8 @@
     <MESSAGE value="Added a new class to reduce the spatial relationships for each pixel." />
     <MESSAGE value="Finished PixelMappingReduction, but preliminary tests passed. But more through test needs to wait for GUI." />
     <MESSAGE value="Done with the GUI. I have to finish the paper first." />
-    <option name="LAST_COMMIT_MESSAGE" value="Done with the GUI. I have to finish the paper first." />
+    <MESSAGE value="GUI works well. Clouds work well too." />
+    <option name="LAST_COMMIT_MESSAGE" value="GUI works well. Clouds work well too." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -808,13 +823,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/PGMReader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="87" column="41" selection-start-line="87" selection-start-column="41" selection-end-line="87" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/BuildingFinder.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1206,10 +1214,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/CampusMap.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6276824">
+        <state vertical-scroll-proportion="0.0">
           <caret line="39" column="81" selection-start-line="39" selection-start-column="81" selection-end-line="39" selection-end-column="81" />
           <folding>
             <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Id2Name.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.611588">
+          <caret line="38" column="33" selection-start-line="38" selection-start-column="33" selection-end-line="38" selection-end-column="33" />
+          <folding>
+            <element signature="e#1067#1068#0" expanded="true" />
+            <element signature="e#1107#1108#0" expanded="true" />
           </folding>
         </state>
       </provider>
