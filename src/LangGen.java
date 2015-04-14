@@ -16,9 +16,11 @@ public class LangGen
         for (int i = 0; i < arr.length - 1; i++) { // only scan the four directions
             if (arr[i] != 0) { // 0 is null
                 if (part1 == null) {
-                    part1 = NSWE[i] + " of " + Id2Name.getName(arr[i]);
+//                    part1 = NSWE[i] + " of " + Id2Name.getName(arr[i]);
+                    part1 = NSWE[i] + " of " + (arr[i]-1);
                 } else if (part2 == null) {
-                    part2 = NSWE[i] + " of " + Id2Name.getName(arr[i]);
+//                    part2 = NSWE[i] + " of " + Id2Name.getName(arr[i]);
+                    part2 = NSWE[i] + " of " + (arr[i]-1);
                 } else {
                     break; // all parts have been assigned
                 }
@@ -27,7 +29,8 @@ public class LangGen
         /** process near **/
         String part3 = null;
         if (arr[4] != 0) {
-            part3 = "near " + Id2Name.getName(arr[4]);
+//            part3 = "near " + Id2Name.getName(arr[4]);
+            part3 = "near " + (arr[4] - 1);
         }
         if (part3 == null) {
             return part1 + " and " + part2;

@@ -139,7 +139,7 @@ public class PixelMappingReduction
      * 2) if there is only one such attribute, add it.
      * 3) if there is Near, use the building with minimal area (because presumably it's the closet building).
      */
-    private void reduceByAreaAndDist(int row, int col) //todo
+    private void reduceByAreaAndDist(int row, int col)
     {
         int northBuilding = findBuildingWithMinDist(mappedNorth[row][col], row, col);
 //        System.out.println(row + " " + col + " "  + northBuilding);
@@ -172,9 +172,7 @@ public class PixelMappingReduction
             reducedMapping[row][col][tuples.get(1).b] = tuples.get(1).a + 1;
 
         /** add near **/
-        if (ArrUtil.countTrue(mappedNear[row][col]) > 0) {
-            reducedMapping[row][col][4] = findBuildingWithMinArea(mappedNear[row][col]) + 1;
-        }
+        reducedMapping[row][col][4] = findBuildingWithMinDist(row, col) + 1;
     }
 
     /**
@@ -208,6 +206,24 @@ public class PixelMappingReduction
         for (int i = 0; i < arr.length; i++) {
             int dist = computeDist(row, col, centroids[i][0], centroids[i][1]);
             if (arr[i] && dist < minDistSoFar) {
+                building = i;
+                minDistSoFar = dist;
+            }
+        }
+        return building;
+    }
+
+    /**
+     * Find the building with minimum distance given pixel's row and col.
+     * @return
+     */
+    private int findBuildingWithMinDist(int row, int col)
+    {
+        int minDistSoFar = Integer.MAX_VALUE;
+        int building = -1;
+        for (int i = 0; i < centroids.length; i++) {
+            int dist = computeDist(row, col, centroids[i][0], centroids[i][1]);
+            if (dist < minDistSoFar) {
                 building = i;
                 minDistSoFar = dist;
             }

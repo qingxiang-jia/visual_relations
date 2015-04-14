@@ -2,11 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b665257b-87ed-48a3-a0ad-76e35a455ade" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/InfluenceMapping.java" afterPath="$PROJECT_DIR$/src/InfluenceMapping.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/IntTuple.java" afterPath="$PROJECT_DIR$/src/IntTuple.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/LangGen.java" afterPath="$PROJECT_DIR$/src/LangGen.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/PixelMappingReduction.java" afterPath="$PROJECT_DIR$/src/PixelMappingReduction.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/TransitiveReduction.java" afterPath="$PROJECT_DIR$/src/TransitiveReduction.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="assn3.iws" />
@@ -41,11 +38,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="LangGen.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="LangGen.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/LangGen.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="15" column="83" selection-start-line="15" selection-start-column="83" selection-end-line="15" selection-end-column="83" />
+            <state vertical-scroll-proportion="0.51502144">
+              <caret line="32" column="39" selection-start-line="32" selection-start-column="39" selection-end-line="32" selection-end-column="39" />
               <folding />
             </state>
           </provider>
@@ -74,21 +71,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="InfluenceMapping.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/InfluenceMapping.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="108" column="21" selection-start-line="108" selection-start-column="21" selection-end-line="108" selection-end-column="21" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PixelMappingReduction.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="PixelMappingReduction.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/PixelMappingReduction.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.50107294">
-              <caret line="209" column="13" selection-start-line="209" selection-start-column="13" selection-end-line="209" selection-end-column="13" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="193" column="24" selection-start-line="193" selection-start-column="24" selection-end-line="193" selection-end-column="24" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -135,11 +122,11 @@
         <option value="$PROJECT_DIR$/src/DrawingArea.java" />
         <option value="$PROJECT_DIR$/src/Id2Name.java" />
         <option value="$PROJECT_DIR$/src/Tuple.java" />
-        <option value="$PROJECT_DIR$/src/LangGen.java" />
         <option value="$PROJECT_DIR$/src/IntTuple.java" />
         <option value="$PROJECT_DIR$/src/InfluenceMapping.java" />
         <option value="$PROJECT_DIR$/src/Test.java" />
         <option value="$PROJECT_DIR$/src/PixelMappingReduction.java" />
+        <option value="$PROJECT_DIR$/src/LangGen.java" />
       </list>
     </option>
   </component>
@@ -719,7 +706,13 @@
       <option name="project" value="LOCAL" />
       <updated>1429041721846</updated>
     </task>
-    <option name="localTasksCounter" value="41" />
+    <task id="LOCAL-00041" summary="Bug found. ^ is not power :(">
+      <created>1429047918195</created>
+      <option name="number" value="00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1429047918195</updated>
+    </task>
+    <option name="localTasksCounter" value="42" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -764,7 +757,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Minor bug fix." />
     <MESSAGE value="Added feature group I, tested." />
     <MESSAGE value="Added feature group J, tested." />
     <MESSAGE value="Added feature group K, tested, bugs to fix. But I am too hungry." />
@@ -789,7 +781,8 @@
     <MESSAGE value="Added a POJO that stores building names." />
     <MESSAGE value="Made it static." />
     <MESSAGE value="Realized need to change reduction algorithm to get better results." />
-    <option name="LAST_COMMIT_MESSAGE" value="Realized need to change reduction algorithm to get better results." />
+    <MESSAGE value="Bug found. ^ is not power :(" />
+    <option name="LAST_COMMIT_MESSAGE" value="Bug found. ^ is not power :(" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1162,30 +1155,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/LangGen.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="15" column="83" selection-start-line="15" selection-start-column="83" selection-end-line="15" selection-end-column="83" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/DrawingArea.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="21" selection-start-line="0" selection-start-column="21" selection-end-line="0" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/InfluenceMapping.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="108" column="21" selection-start-line="108" selection-start-column="21" selection-end-line="108" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/IntTuple.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.34414557">
@@ -1197,13 +1166,37 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/InfluenceMapping.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5997854">
+          <caret line="108" column="21" selection-start-line="108" selection-start-column="21" selection-end-line="108" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/PixelMappingReduction.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.50107294">
-          <caret line="209" column="13" selection-start-line="209" selection-start-column="13" selection-end-line="209" selection-end-column="13" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="193" column="24" selection-start-line="193" selection-start-column="24" selection-end-line="193" selection-end-column="24" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/DrawingArea.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="21" selection-start-line="0" selection-start-column="21" selection-end-line="0" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/LangGen.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.51502144">
+          <caret line="32" column="39" selection-start-line="32" selection-start-column="39" selection-end-line="32" selection-end-column="39" />
+          <folding />
         </state>
       </provider>
     </entry>
