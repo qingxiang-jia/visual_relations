@@ -5,6 +5,7 @@
 public class Id2Name
 {
     final static String[] buildingNames = new String[] {
+            null,
             "Pupin",
             "Schapiro CEPSR",
             "Mudd, Engineering Terrace, Fairchild & Computer Science",

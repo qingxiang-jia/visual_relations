@@ -3,6 +3,7 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
+import java.util.Arrays;
 
 /**
  * The area that displays the map, and responds to user click.
@@ -72,6 +73,8 @@ public class DrawingArea extends JPanel
                         [reducedMapping[y][x][2]]
                         [reducedMapping[y][x][3]]
                         [reducedMapping[y][x][4]].getAllPixels();
+                System.out.println(Arrays.toString(reducedMapping[y][x]));
+                System.out.println(LangGen.tellWhereShort(reducedMapping[y][x])); // inform the user "where"
             } else {
                 cloud = null;
                 System.out.println("no cloud for this pixel");

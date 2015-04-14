@@ -43,21 +43,21 @@ public class PixelMappingReduction
     public void reduceByArea()
     {
         for (int r = 0; r < mappedNorth.length; r++)
-            for (int c = 0; c < mappedNorth[0].length; c++) {
+            for (int c = 0; c < mappedNorth[0].length; c++)
                 reduceByArea(r, c);
-//                System.out.println(r + " " + c + " " + Arrays.toString(reducedMapping[r][c]));
-            }
     }
 
     public void createInverse()
     {
-        reducedMappingInverse = new PixelSet[area.length][area.length][area.length][area.length][area.length];
+        reducedMappingInverse = new PixelSet[area.length + 1][area.length + 1][area.length + 1][area.length + 1][area.length + 1];
         for (int r = 0; r < reducedMapping.length; r++)
             for (int c = 0; c < reducedMapping[0].length; c++) {
                 if (reducedMappingInverse[reducedMapping[r][c][0]][reducedMapping[r][c][1]]
                         [reducedMapping[r][c][2]][reducedMapping[r][c][3]][reducedMapping[r][c][4]] == null) {
+                    PixelSet pixelSet = new PixelSet();
+                    pixelSet.add(new Pixel(r, c));
                     reducedMappingInverse[reducedMapping[r][c][0]][reducedMapping[r][c][1]]
-                            [reducedMapping[r][c][2]][reducedMapping[r][c][3]][reducedMapping[r][c][4]] = new PixelSet();
+                            [reducedMapping[r][c][2]][reducedMapping[r][c][3]][reducedMapping[r][c][4]] = pixelSet;
                 }
                 reducedMappingInverse[reducedMapping[r][c][0]][reducedMapping[r][c][1]]
                         [reducedMapping[r][c][2]][reducedMapping[r][c][3]][reducedMapping[r][c][4]].add(new Pixel(r, c));
@@ -79,11 +79,11 @@ public class PixelMappingReduction
         int westBuilding = findBuildingWithMinArea(mappedWest[row][col]);
         int eastBuilding = findBuildingWithMinArea(mappedEast[row][col]);
 
-        int sumNW = -1, sumNE = -1, sumSW = -1, sumSE = -1;
-        ifNotNegativeThenSum(northBuilding, westBuilding, sumNW);
-        ifNotNegativeThenSum(northBuilding, eastBuilding, sumNE);
-        ifNotNegativeThenSum(southBuilding, westBuilding, sumSW);
-        ifNotNegativeThenSum(southBuilding, eastBuilding, sumSE);
+        int sumNW, sumNE, sumSW, sumSE;
+        sumNW = ifNotNegativeThenSum(northBuilding, westBuilding);
+        sumNE = ifNotNegativeThenSum(northBuilding, eastBuilding);
+        sumSW = ifNotNegativeThenSum(southBuilding, westBuilding);
+        sumSE = ifNotNegativeThenSum(southBuilding, eastBuilding);
 
         if (sumNW == -1 && sumNE == -1 && sumSW == -1 && sumSE == -1) { // no orthogonal pair possible
             int[] compareArr = new int[]{northBuilding, southBuilding, westBuilding, eastBuilding};
@@ -96,7 +96,7 @@ public class PixelMappingReduction
                     direction = i;
                 }
             }
-            reducedMapping[row][col][direction] = building;
+            reducedMapping[row][col][direction] = building + 1;
         } else { // there is at least one orthogonal pair
             int[] compareArr = new int[]{sumNW, sumNE, sumSW, sumSE};
             int smallest = Integer.MAX_VALUE;
@@ -108,22 +108,22 @@ public class PixelMappingReduction
                 }
             }
             if (smallestIndex == 0) { // N W
-                reducedMapping[row][col][0] = northBuilding;
-                reducedMapping[row][col][2] = westBuilding;
+                reducedMapping[row][col][0] = northBuilding + 1;
+                reducedMapping[row][col][2] = westBuilding + 1;
             } else if (smallestIndex == 1) { // N E
-                reducedMapping[row][col][0] = northBuilding;
-                reducedMapping[row][col][3] = eastBuilding;
+                reducedMapping[row][col][0] = northBuilding + 1;
+                reducedMapping[row][col][3] = eastBuilding + 1;
             } else if (smallestIndex == 2) { // S W
-                reducedMapping[row][col][1] = southBuilding;
-                reducedMapping[row][col][2] = westBuilding;
+                reducedMapping[row][col][1] = southBuilding + 1;
+                reducedMapping[row][col][2] = westBuilding + 1;
             } else if (smallestIndex == 3) { // S E
-                reducedMapping[row][col][1] = southBuilding;
-                reducedMapping[row][col][3] = eastBuilding;
+                reducedMapping[row][col][1] = southBuilding + 1;
+                reducedMapping[row][col][3] = eastBuilding + 1;
             }
         }
         /** add near **/
         if (ArrUtil.countTrue(mappedNear[row][col]) > 0) {
-            reducedMapping[row][col][4] = findBuildingWithMinArea(mappedNear[row][col]);
+            reducedMapping[row][col][4] = findBuildingWithMinArea(mappedNear[row][col]) + 1;
         }
     }
 
@@ -136,14 +136,14 @@ public class PixelMappingReduction
      */
     private void reduceByAreaAndDist(int row, int col) //todo
     {
-//        int northBuilding = findBuildingWithMinDist(mappedNorth[row][col]);
-//        int southBuilding = findBuildingWithMinDist(mappedSouth[row][col]);
-//        int westBuilding = findBuildingWithMinDist(mappedWest[row][col]);
-//        int eastBuilding = findBuildingWithMinDist(mappedEast[row][col]);
+        int northBuilding = findBuildingWithMinDist(mappedNorth[row][col], row, col);
+        int southBuilding = findBuildingWithMinDist(mappedSouth[row][col], row, col);
+        int westBuilding = findBuildingWithMinDist(mappedWest[row][col], row, col);
+        int eastBuilding = findBuildingWithMinDist(mappedEast[row][col], row, col);
 
         /** add near **/
         if (ArrUtil.countTrue(mappedNear[row][col]) > 0) {
-            reducedMapping[row][col][4] = findBuildingWithMinArea(mappedNear[row][col]);
+            reducedMapping[row][col][4] = findBuildingWithMinArea(mappedNear[row][col]) + 1;
         }
     }
 
@@ -171,23 +171,41 @@ public class PixelMappingReduction
      * @param arr
      * @return
      */
-    private int findBuildingWithMinDist(boolean[] arr, int row, int col) //todo
+    private int findBuildingWithMinDist(boolean[] arr, int row, int col)
     {
         int minDistSoFar = Integer.MAX_VALUE;
         int building = -1;
         for (int i = 0; i < arr.length; i++) {
-            if (arr[i] && (computeDist(row, col, centroids[i][0], centroids[i][1]) < minDistSoFar)) {
+            int dist = computeDist(row, col, centroids[i][0], centroids[i][1]);
+            if (arr[i] && dist < minDistSoFar) {
                 building = i;
-                minDistSoFar = computeDist(row, col, centroids[i][0], centroids[i][1]);
+                minDistSoFar = dist;
             }
         }
-        return -1;
+        return building;
     }
 
-    private void ifNotNegativeThenSum(int a, int b, int sum)
+    /**
+     * Given a list of building (building IDs), return the two minimum-distance buildings' direction (index)
+     * of the building.
+     * @param buildingList
+     * @return
+     */
+    private int[] findTwoBuildingWithMinDist(int[] buildingList)//todo
+    {
+        int[] twoMinima = new int[]{-1, -1};
+        for (int i = 0; i < buildingList.length; i++) {
+
+        }
+        return null;
+    }
+
+    private int ifNotNegativeThenSum(int a, int b)
     {
         if (!(a == -1) && !(b == -1))
-            sum = a + b;
+            return a + b;
+        else
+            return -1;
     }
 
     private int computeDist(int row1, int col1, int row2, int col2)
