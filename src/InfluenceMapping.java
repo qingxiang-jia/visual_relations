@@ -102,11 +102,11 @@ public class InfluenceMapping
 
         int scanBegin = colMin, scanEnd = colMax;
 
-        scanBegin -= 0.01 * width; // widen the scan width a little bit
+        scanBegin -= 20 * width; // widen the scan width a little bit
         if (scanBegin < 0)
             scanBegin = 0;
 
-        scanEnd += 0.01 * width; // widen the scan width a little bit
+        scanEnd += 20 * width; // widen the scan width a little bit
         if (scanEnd > img[0].length)
             scanEnd = img[0].length - 1;
 
@@ -144,11 +144,11 @@ public class InfluenceMapping
 
         int scanBegin = colMin, scanEnd = colMax;
 
-        scanBegin -= 0.01 * width; // widen the scan width a little bit
+        scanBegin -= 20 * width; // widen the scan width a little bit
         if (scanBegin < 0)
             scanBegin = 0;
 
-        scanEnd += 0.01 * width; // widen the scan width a little bit
+        scanEnd += 20 * width; // widen the scan width a little bit
         if (scanEnd > img[0].length)
             scanEnd = img[0].length - 1;
 
@@ -182,11 +182,11 @@ public class InfluenceMapping
 
         int scanBegin = rowMin, scanEnd = rowMax;
 
-        scanBegin -= 0.01 * width; // widen the scan width a little bit
+        scanBegin -= 20 * width; // widen the scan width a little bit
         if (scanBegin < 0)
             scanBegin = 0;
 
-        scanEnd += 0.01 * width; // widen the scan width a little bit
+        scanEnd += 20 * width; // widen the scan width a little bit
         if (scanEnd > img.length)
             scanEnd = img.length - 1;
 
@@ -220,11 +220,11 @@ public class InfluenceMapping
 
         int scanBegin = rowMin, scanEnd = rowMax;
 
-        scanBegin -= 0.01 * width; // widen the scan width a little bit
+        scanBegin -= 20 * width; // widen the scan width a little bit
         if (scanBegin < 0)
             scanBegin = 0;
 
-        scanEnd += 0.01 * width; // widen the scan width a little bit
+        scanEnd += 20 * width; // widen the scan width a little bit
         if (scanEnd > img.length)
             scanEnd = img.length - 1;
 
@@ -315,10 +315,10 @@ public class InfluenceMapping
         /** extract spacial relationships **/
         InfluenceMapping mapper = new InfluenceMapping(MBRCoordinates, area, centroids, img);
         mapper.map();
-//        IOUtil.serialize("mappedNorth.ser", mapper.mappedNorth);
-//        IOUtil.serialize("mappedSouth.ser", mapper.mappedSouth);
-//        IOUtil.serialize("mappedWest.ser", mapper.mappedWest);
-//        IOUtil.serialize("mappedEast.ser", mapper.mappedEast);
-//        IOUtil.serialize("mappedNear.ser", mapper.mappedNear);
+        IOUtil.serialize("mappedNorth.ser", mapper.mappedNorth);
+        IOUtil.serialize("mappedSouth.ser", mapper.mappedSouth);
+        IOUtil.serialize("mappedWest.ser", mapper.mappedWest);
+        IOUtil.serialize("mappedEast.ser", mapper.mappedEast);
+        IOUtil.serialize("mappedNear.ser", mapper.mappedNear);
     }
 }

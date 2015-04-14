@@ -13,7 +13,7 @@ public class LangGen
     final static String tellWhereShort(int[] arr)
     {
         String part1 = null, part2 = null;
-        for (int i = 0; i < arr.length; i++) {
+        for (int i = 0; i < arr.length - 1; i++) { // only scan the four directions
             if (arr[i] != 0) { // 0 is null
                 if (part1 == null) {
                     part1 = NSWE[i] + " of " + Id2Name.getName(arr[i]);

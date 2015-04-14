@@ -1,5 +1,10 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
 /**
- * For each pixel, reduceByArea the number of spatial relationships to around 2 or 3.
+ * For each pixel, reduce the number of spatial relationships to around 2 or 3.
  * Here is the rule: we want to preserve orthogonal relationships such as N E,
  * N W, etc, because it helps to locate a pixel in 2D space. When there is near
  * attribute available, we do it, otherwise, not.
@@ -40,11 +45,11 @@ public class PixelMappingReduction
         reducedMapping = new int[mappedNorth.length][mappedNorth[0].length][5];
     }
 
-    public void reduceByArea()
+    public void reduce()
     {
         for (int r = 0; r < mappedNorth.length; r++)
             for (int c = 0; c < mappedNorth[0].length; c++)
-                reduceByArea(r, c);
+                reduceByAreaAndDist(r, c);
     }
 
     public void createInverse()
@@ -72,7 +77,7 @@ public class PixelMappingReduction
      * 3) if before 1), cannot find such pair, use one of N, S, W, E whose building's area is the minimal.
      * 4) if there is Near, use the building with minimal area (because presumably it's the closet building).
      */
-    private void reduceByArea(int row, int col)
+    private void reduce(int row, int col)
     {
         int northBuilding = findBuildingWithMinArea(mappedNorth[row][col]);
         int southBuilding = findBuildingWithMinArea(mappedSouth[row][col]);
@@ -137,9 +142,34 @@ public class PixelMappingReduction
     private void reduceByAreaAndDist(int row, int col) //todo
     {
         int northBuilding = findBuildingWithMinDist(mappedNorth[row][col], row, col);
+//        System.out.println(row + " " + col + " "  + northBuilding);
         int southBuilding = findBuildingWithMinDist(mappedSouth[row][col], row, col);
         int westBuilding = findBuildingWithMinDist(mappedWest[row][col], row, col);
+//        System.out.print(row + " " + col + " ");
+//        for (boolean bol : mappedWest[row][col]) {
+//            if (bol)
+//                System.out.print("T ");
+//            else
+//                System.out.print("F ");
+//        }
+//        System.out.println();
         int eastBuilding = findBuildingWithMinDist(mappedEast[row][col], row, col);
+
+        /** find two buildings with two lowest distances **/ // there are better ways, but catching the deadline
+        List<IntTuple> tuples = new ArrayList<>();
+        if (northBuilding != -1)
+            tuples.add(new IntTuple(northBuilding, 0, computeDist(row, col, centroids[northBuilding][0], centroids[northBuilding][1])));
+        if (southBuilding != -1)
+            tuples.add(new IntTuple(southBuilding, 1, computeDist(row, col, centroids[southBuilding][0], centroids[southBuilding][1])));
+        if (westBuilding != -1)
+                new IntTuple(westBuilding, 2, computeDist(row, col, centroids[westBuilding][0], centroids[westBuilding][1]));
+        if (eastBuilding != -1)
+                new IntTuple(eastBuilding, 3, computeDist(row, col, centroids[eastBuilding][0], centroids[eastBuilding][1]));
+        Collections.sort(tuples); // sort by distance in ascending order
+        if (tuples.size() != 0)
+            reducedMapping[row][col][tuples.get(0).b] = tuples.get(0).a + 1;
+        if (tuples.size() > 1)
+            reducedMapping[row][col][tuples.get(1).b] = tuples.get(1).a + 1;
 
         /** add near **/
         if (ArrUtil.countTrue(mappedNear[row][col]) > 0) {
@@ -185,21 +215,6 @@ public class PixelMappingReduction
         return building;
     }
 
-    /**
-     * Given a list of building (building IDs), return the two minimum-distance buildings' direction (index)
-     * of the building.
-     * @param buildingList
-     * @return
-     */
-    private int[] findTwoBuildingWithMinDist(int[] buildingList)//todo
-    {
-        int[] twoMinima = new int[]{-1, -1};
-        for (int i = 0; i < buildingList.length; i++) {
-
-        }
-        return null;
-    }
-
     private int ifNotNegativeThenSum(int a, int b)
     {
         if (!(a == -1) && !(b == -1))
@@ -210,7 +225,7 @@ public class PixelMappingReduction
 
     private int computeDist(int row1, int col1, int row2, int col2)
     {
-        return (int) Math.sqrt((row1 - row2)^2 + (col1 - col2)^2);
+        return (int) Math.sqrt(Math.pow((row1 - row2), 2) + Math.pow((col1 - col2), 2)); // not ^!!
     }
 
     public static void main(String[] args)
@@ -227,7 +242,7 @@ public class PixelMappingReduction
         /** extract spacial relationships **/
         PixelMappingReduction reducer = new PixelMappingReduction(area, centroids,
                 mappedNorth, mappedSouth, mappedWest, mappedEast, mappedNear);
-        reducer.reduceByArea();
+        reducer.reduce();
         IOUtil.serialize("reducedMapping.ser", reducer.reducedMapping);
         reducer.createInverse();
         IOUtil.serialize("reducedMappingInverse.ser", reducer.reducedMappingInverse);
