@@ -4,7 +4,7 @@
  */
 public class Id2Name
 {
-    final String[] buildingNames = new String[] {
+    final static String[] buildingNames = new String[] {
             "Pupin",
             "Schapiro CEPSR",
             "Mudd, Engineering Terrace, Fairchild & Computer Science",
@@ -34,7 +34,7 @@ public class Id2Name
             "Carman"
     };
 
-    public String getName(int id)
+    public static String getName(int id)
     {
         return buildingNames[id];
     }
