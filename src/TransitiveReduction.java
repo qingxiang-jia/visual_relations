@@ -21,7 +21,7 @@ public class TransitiveReduction
                         System.out.printf("No need for relation %d->%d because you have %d->%d & %d->%d\n", i, k, i, j, j, k);
                     }
     }
-//todo reduce near also!
+//todo reduceByArea near also!
     public static void main(String[] args)
     {
         /** deserialize directional relationships **/

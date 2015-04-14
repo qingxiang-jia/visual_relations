@@ -11,4 +11,24 @@ public class Pixel implements Serializable
     {
         coordinates = new int[]{r, c};
     }
+
+    public int getRow()
+    {
+        return coordinates[0];
+    }
+
+    public int getCol()
+    {
+        return coordinates[1];
+    }
+
+    public int getX()
+    {
+        return getCol();
+    }
+
+    public int getY()
+    {
+        return getRow();
+    }
 }

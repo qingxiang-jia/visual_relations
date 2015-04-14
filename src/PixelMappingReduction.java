@@ -1,5 +1,5 @@
 /**
- * For each pixel, reduce the number of spatial relationships to around 2 or 3.
+ * For each pixel, reduceByArea the number of spatial relationships to around 2 or 3.
  * Here is the rule: we want to preserve orthogonal relationships such as N E,
  * N W, etc, because it helps to locate a pixel in 2D space. When there is near
  * attribute available, we do it, otherwise, not.
@@ -12,6 +12,11 @@ public class PixelMappingReduction
     int[] area;
 
     /**
+     * center of mass of each building
+     */
+    int[][] centroids;
+
+    /**
      * Store spatial relationship for each pixel.
      */
     boolean[][][] mappedNorth, mappedSouth, mappedWest, mappedEast, mappedNear; // [r][c][building]
@@ -20,12 +25,13 @@ public class PixelMappingReduction
      * Store pruned spatial relationship for each pixel.
      */
     int[][][] reducedMapping; // [r][c][N S W E Near] -1 represents none, else the value is building id
-    Pixel[][][][][] reducedMappingInverse; // [N][S][W][E][Near]
+    PixelSet[][][][][] reducedMappingInverse; // [N][S][W][E][Near]
 
-    public PixelMappingReduction(int area[], boolean[][][] mappedNorth, boolean[][][] mappedSouth,
+    public PixelMappingReduction(int[] area, int[][] centroids, boolean[][][] mappedNorth, boolean[][][] mappedSouth,
                                  boolean[][][] mappedWest, boolean[][][] mappedEast, boolean[][][] mappedNear)
     {
         this.area = area;
+        this.centroids = centroids;
         this.mappedNorth = mappedNorth;
         this.mappedSouth = mappedSouth;
         this.mappedWest = mappedWest;
@@ -34,22 +40,27 @@ public class PixelMappingReduction
         reducedMapping = new int[mappedNorth.length][mappedNorth[0].length][5];
     }
 
-    public void reduce()
+    public void reduceByArea()
     {
         for (int r = 0; r < mappedNorth.length; r++)
             for (int c = 0; c < mappedNorth[0].length; c++) {
-                reduce(r, c);
+                reduceByArea(r, c);
 //                System.out.println(r + " " + c + " " + Arrays.toString(reducedMapping[r][c]));
             }
     }
 
     public void createInverse()
     {
-        reducedMappingInverse = new Pixel[area.length][area.length][area.length][area.length][area.length];
+        reducedMappingInverse = new PixelSet[area.length][area.length][area.length][area.length][area.length];
         for (int r = 0; r < reducedMapping.length; r++)
             for (int c = 0; c < reducedMapping[0].length; c++) {
+                if (reducedMappingInverse[reducedMapping[r][c][0]][reducedMapping[r][c][1]]
+                        [reducedMapping[r][c][2]][reducedMapping[r][c][3]][reducedMapping[r][c][4]] == null) {
+                    reducedMappingInverse[reducedMapping[r][c][0]][reducedMapping[r][c][1]]
+                            [reducedMapping[r][c][2]][reducedMapping[r][c][3]][reducedMapping[r][c][4]] = new PixelSet();
+                }
                 reducedMappingInverse[reducedMapping[r][c][0]][reducedMapping[r][c][1]]
-                        [reducedMapping[r][c][2]][reducedMapping[r][c][3]][reducedMapping[r][c][4]] = new Pixel(r, c);
+                        [reducedMapping[r][c][2]][reducedMapping[r][c][3]][reducedMapping[r][c][4]].add(new Pixel(r, c));
             }
     }
 
@@ -57,11 +68,11 @@ public class PixelMappingReduction
      * Prune spatial relationship for a pixel.
      * Reduction rule:
      * 1) for each orthogonal pair: N S, N E, S W, S E, only keep the building with smallest area.
-     * 2) if after 1), there are more than one pair, choose the pair with minimal average distance.
+     * 2) if after 1), there are more than one pair, choose the pair with minimal average area.
      * 3) if before 1), cannot find such pair, use one of N, S, W, E whose building's area is the minimal.
      * 4) if there is Near, use the building with minimal area (because presumably it's the closet building).
      */
-    private void reduce(int row, int col)
+    private void reduceByArea(int row, int col)
     {
         int northBuilding = findBuildingWithMinArea(mappedNorth[row][col]);
         int southBuilding = findBuildingWithMinArea(mappedSouth[row][col]);
@@ -117,6 +128,26 @@ public class PixelMappingReduction
     }
 
     /**
+     * Prune spatial relationship for a pixel.
+     * Reduction rule:
+     * 1) for each of N, S, W, E, find the two attributes whose corresponding building is closest to the pixel.
+     * 2) if there is only one such attribute, add it.
+     * 3) if there is Near, use the building with minimal area (because presumably it's the closet building).
+     */
+    private void reduceByAreaAndDist(int row, int col) //todo
+    {
+//        int northBuilding = findBuildingWithMinDist(mappedNorth[row][col]);
+//        int southBuilding = findBuildingWithMinDist(mappedSouth[row][col]);
+//        int westBuilding = findBuildingWithMinDist(mappedWest[row][col]);
+//        int eastBuilding = findBuildingWithMinDist(mappedEast[row][col]);
+
+        /** add near **/
+        if (ArrUtil.countTrue(mappedNear[row][col]) > 0) {
+            reducedMapping[row][col][4] = findBuildingWithMinArea(mappedNear[row][col]);
+        }
+    }
+
+    /**
      * Find the building that those cell is true, and has minimal area among all other building whose
      * cell value is true in arr.
      * @param arr
@@ -129,9 +160,28 @@ public class PixelMappingReduction
         for (int i = 0; i < arr.length; i++) {
             if (arr[i] && area[i] < areaSoFar) {
                 building = i;
+                areaSoFar = area[i];
             }
         }
         return building;
+    }
+
+    /**
+     * Find the building whose cell is true, and has minimal distance to the pixel.
+     * @param arr
+     * @return
+     */
+    private int findBuildingWithMinDist(boolean[] arr, int row, int col) //todo
+    {
+        int minDistSoFar = Integer.MAX_VALUE;
+        int building = -1;
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] && (computeDist(row, col, centroids[i][0], centroids[i][1]) < minDistSoFar)) {
+                building = i;
+                minDistSoFar = computeDist(row, col, centroids[i][0], centroids[i][1]);
+            }
+        }
+        return -1;
     }
 
     private void ifNotNegativeThenSum(int a, int b, int sum)
@@ -140,10 +190,16 @@ public class PixelMappingReduction
             sum = a + b;
     }
 
+    private int computeDist(int row1, int col1, int row2, int col2)
+    {
+        return (int) Math.sqrt((row1 - row2)^2 + (col1 - col2)^2);
+    }
+
     public static void main(String[] args)
     {
         /** deserialize required files **/
         int[] area = (int[]) IOUtil.deserialize("area.ser");
+        int[][] centroids = (int[][]) IOUtil.deserialize("centroids.ser");
         boolean[][][] mappedNorth = (boolean[][][]) IOUtil.deserialize("mappedNorth.ser");
         boolean[][][] mappedSouth = (boolean[][][]) IOUtil.deserialize("mappedSouth.ser");
         boolean[][][] mappedWest = (boolean[][][]) IOUtil.deserialize("mappedWest.ser");
@@ -151,8 +207,9 @@ public class PixelMappingReduction
         boolean[][][] mappedNear = (boolean[][][]) IOUtil.deserialize("mappedNear.ser");
 
         /** extract spacial relationships **/
-        PixelMappingReduction reducer = new PixelMappingReduction(area, mappedNorth, mappedSouth, mappedWest, mappedEast, mappedNear);
-        reducer.reduce();
+        PixelMappingReduction reducer = new PixelMappingReduction(area, centroids,
+                mappedNorth, mappedSouth, mappedWest, mappedEast, mappedNear);
+        reducer.reduceByArea();
         IOUtil.serialize("reducedMapping.ser", reducer.reducedMapping);
         reducer.createInverse();
         IOUtil.serialize("reducedMappingInverse.ser", reducer.reducedMappingInverse);
