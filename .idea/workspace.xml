@@ -2,12 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b665257b-87ed-48a3-a0ad-76e35a455ade" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/ShortestPath.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ArrUtil.java" afterPath="$PROJECT_DIR$/src/ArrUtil.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/FeatureExtractor.java" afterPath="$PROJECT_DIR$/src/FeatureExtractor.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/SRExtractorPixel.java" afterPath="$PROJECT_DIR$/src/SRExtractorPixel.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/SpacialRelationExtractor.java" afterPath="$PROJECT_DIR$/src/SpacialRelationExtractor.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/TransitiveReduction.java" afterPath="$PROJECT_DIR$/src/TransitiveReduction.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/CampusMap.java" afterPath="$PROJECT_DIR$/src/CampusMap.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/DrawingArea.java" afterPath="$PROJECT_DIR$/src/DrawingArea.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="assn3.iws" />
@@ -30,32 +26,26 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="TransitiveReduction.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/TransitiveReduction.java">
+      <file leaf-file-name="CampusMap.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/CampusMap.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="19" column="34" selection-start-line="19" selection-start-column="34" selection-end-line="19" selection-end-column="34" />
-              <folding />
+              <caret line="25" column="114" selection-start-line="25" selection-start-column="114" selection-end-line="25" selection-end-column="114" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ShortestPath.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/ShortestPath.java">
+      <file leaf-file-name="DrawingArea.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/DrawingArea.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.67596567">
-              <caret line="26" column="70" selection-start-line="26" selection-start-column="70" selection-end-line="26" selection-end-column="70" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ArrUtil.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/ArrUtil.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="31" column="13" selection-start-line="31" selection-start-column="13" selection-end-line="31" selection-end-column="13" />
-              <folding />
+            <state vertical-scroll-proportion="0.55150217">
+              <caret line="100" column="0" selection-start-line="100" selection-start-column="0" selection-end-line="100" selection-end-column="0" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -92,9 +82,7 @@
         <option value="$PROJECT_DIR$/src/SpacialRelationExtractor.java" />
         <option value="$PROJECT_DIR$/src/IOUtil.java" />
         <option value="$PROJECT_DIR$/src/Pixel.java" />
-        <option value="$PROJECT_DIR$/src/CampusMap.java" />
         <option value="$PROJECT_DIR$/src/PixelSet.java" />
-        <option value="$PROJECT_DIR$/src/DrawingArea.java" />
         <option value="$PROJECT_DIR$/src/Id2Name.java" />
         <option value="$PROJECT_DIR$/src/Tuple.java" />
         <option value="$PROJECT_DIR$/src/IntTuple.java" />
@@ -107,6 +95,8 @@
         <option value="$PROJECT_DIR$/src/Test.java" />
         <option value="$PROJECT_DIR$/src/ArrUtil.java" />
         <option value="$PROJECT_DIR$/src/ShortestPath.java" />
+        <option value="$PROJECT_DIR$/src/CampusMap.java" />
+        <option value="$PROJECT_DIR$/src/DrawingArea.java" />
       </list>
     </option>
   </component>
@@ -206,7 +196,7 @@
     <property name="settings.editor.selected.configurable" value="terminal" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
   </component>
-  <component name="RunManager" selected="Application.ShortestPath">
+  <component name="RunManager" selected="Application.CampusMap">
     <configuration default="false" name="PixelMappingReduction" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <output_file path="$USER_HOME$/Downloads/file" is_save="false" />
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
@@ -439,10 +429,10 @@
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Application.ShortestPath" />
-        <item index="1" class="java.lang.String" itemvalue="Application.TransitiveReduction" />
-        <item index="2" class="java.lang.String" itemvalue="Application.ReduceNear" />
-        <item index="3" class="java.lang.String" itemvalue="Application.CampusMap" />
+        <item index="0" class="java.lang.String" itemvalue="Application.CampusMap" />
+        <item index="1" class="java.lang.String" itemvalue="Application.ShortestPath" />
+        <item index="2" class="java.lang.String" itemvalue="Application.TransitiveReduction" />
+        <item index="3" class="java.lang.String" itemvalue="Application.ReduceNear" />
         <item index="4" class="java.lang.String" itemvalue="Application.PixelMappingReduction" />
       </list>
     </recent_temporary>
@@ -726,7 +716,13 @@
       <option name="project" value="LOCAL" />
       <updated>1429055795654</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL-00045" summary="Implemented Dijkstra's algorithm to find shortest path.">
+      <created>1429128235983</created>
+      <option name="number" value="00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1429128235983</updated>
+    </task>
+    <option name="localTasksCounter" value="46" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -771,7 +767,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Added feature group K, tested. All bugs fixed. Now FeatureExtractor is finished." />
     <MESSAGE value="Finishing up." />
     <MESSAGE value="Added extractNorth, fully tested" />
     <MESSAGE value="Added extractSouth, fully tested" />
@@ -796,7 +791,8 @@
     <MESSAGE value="Improved Near" />
     <MESSAGE value="Step 3 done" />
     <MESSAGE value="Added a way to filter Near(S, T)." />
-    <option name="LAST_COMMIT_MESSAGE" value="Added a way to filter Near(S, T)." />
+    <MESSAGE value="Implemented Dijkstra's algorithm to find shortest path." />
+    <option name="LAST_COMMIT_MESSAGE" value="Implemented Dijkstra's algorithm to find shortest path." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1106,14 +1102,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/DrawingArea.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="21" selection-start-line="0" selection-start-column="21" selection-end-line="0" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/LangGen.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1158,24 +1146,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/CampusMap.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="23" column="11" selection-start-line="23" selection-start-column="11" selection-end-line="23" selection-end-column="11" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/TransitiveReduction.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="19" column="34" selection-start-line="19" selection-start-column="34" selection-end-line="19" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/ArrUtil.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1186,9 +1156,37 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ShortestPath.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.67596567">
-          <caret line="26" column="70" selection-start-line="26" selection-start-column="70" selection-end-line="26" selection-end-column="70" />
+        <state vertical-scroll-proportion="0.38626608">
+          <caret line="58" column="36" selection-start-line="58" selection-start-column="36" selection-end-line="58" selection-end-column="36" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/TransitiveReduction.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.305794">
+          <caret line="19" column="34" selection-start-line="19" selection-start-column="34" selection-end-line="19" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/CampusMap.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="25" column="114" selection-start-line="25" selection-start-column="114" selection-end-line="25" selection-end-column="114" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/DrawingArea.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.55150217">
+          <caret line="100" column="0" selection-start-line="100" selection-start-column="0" selection-end-line="100" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

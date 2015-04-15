@@ -3,7 +3,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 
 /**
- * The interactive GUI that displays cloud when user clicks on a pixel.
+ * The interactive GUI that displays currCloud when user clicks on a pixel.
  */
 public class CampusMap
 {
@@ -23,7 +23,7 @@ public class CampusMap
         JFrame frame = new JFrame();
         JFrame.setDefaultLookAndFeelDecorated(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        DrawingArea drawingArea = new DrawingArea(path, reducedMapping, reducedMappingInverse);
+        DrawingArea drawingArea = new DrawingArea(path, reducedMapping, reducedMappingInverse, DrawingArea.ST_PAIR);
         frame.getContentPane().add(drawingArea, BorderLayout.CENTER);
         frame.setLocationRelativeTo(null);
         frame.setPreferredSize(new Dimension(275, 520));
