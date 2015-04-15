@@ -69,6 +69,8 @@ public class DrawingArea extends JPanel
                 drawCloud(prevCloud, g);
                 isGreen = !isGreen;
             }
+        } else if (mode == NAV) { // only draw cursor
+
         }
 
         g.setColor(Color.BLUE); // draw cursor
@@ -119,8 +121,14 @@ public class DrawingArea extends JPanel
             } else if (mode == ST_PAIR) { // generates green/red clouds alternating
                 prevCloud = currCloud;
                 currCloud = genCloud();
+            } else if (mode == NAV) { // after determined source and target, only draw cursor
+                if (prevCloud == null && currCloud == null) {// initial case
+                    currCloud = genCloud();
+                } else if (prevCloud == null && currCloud != null) {// second click
+                    prevCloud = currCloud;
+                    currCloud = genCloud();
+                }
             }
-
             repaint();
         }
     }

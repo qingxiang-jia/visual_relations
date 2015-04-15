@@ -26,11 +26,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="CampusMap.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="CampusMap.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/CampusMap.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="25" column="114" selection-start-line="25" selection-start-column="114" selection-end-line="25" selection-end-column="114" />
+            <state vertical-scroll-proportion="0.40236053">
+              <caret line="25" column="110" selection-start-line="25" selection-start-column="110" selection-end-line="25" selection-end-column="110" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -38,11 +38,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DrawingArea.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="DrawingArea.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/DrawingArea.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.55150217">
-              <caret line="100" column="0" selection-start-line="100" selection-start-column="0" selection-end-line="100" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="75" column="12" selection-start-line="75" selection-start-column="12" selection-end-line="75" selection-end-column="12" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -95,8 +95,8 @@
         <option value="$PROJECT_DIR$/src/Test.java" />
         <option value="$PROJECT_DIR$/src/ArrUtil.java" />
         <option value="$PROJECT_DIR$/src/ShortestPath.java" />
-        <option value="$PROJECT_DIR$/src/CampusMap.java" />
         <option value="$PROJECT_DIR$/src/DrawingArea.java" />
+        <option value="$PROJECT_DIR$/src/CampusMap.java" />
       </list>
     </option>
   </component>
@@ -722,7 +722,13 @@
       <option name="project" value="LOCAL" />
       <updated>1429128235983</updated>
     </task>
-    <option name="localTasksCounter" value="46" />
+    <task id="LOCAL-00046" summary="Now GUI can either show clicked clouds individually, or as pairs of source and target.">
+      <created>1429132321615</created>
+      <option name="number" value="00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1429132321615</updated>
+    </task>
+    <option name="localTasksCounter" value="47" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -767,7 +773,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Finishing up." />
     <MESSAGE value="Added extractNorth, fully tested" />
     <MESSAGE value="Added extractSouth, fully tested" />
     <MESSAGE value="Added extractWest, fully tested" />
@@ -792,7 +797,8 @@
     <MESSAGE value="Step 3 done" />
     <MESSAGE value="Added a way to filter Near(S, T)." />
     <MESSAGE value="Implemented Dijkstra's algorithm to find shortest path." />
-    <option name="LAST_COMMIT_MESSAGE" value="Implemented Dijkstra's algorithm to find shortest path." />
+    <MESSAGE value="Now GUI can either show clicked clouds individually, or as pairs of source and target." />
+    <option name="LAST_COMMIT_MESSAGE" value="Now GUI can either show clicked clouds individually, or as pairs of source and target." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1170,20 +1176,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/CampusMap.java">
+    <entry file="file://$PROJECT_DIR$/src/DrawingArea.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="25" column="114" selection-start-line="25" selection-start-column="114" selection-end-line="25" selection-end-column="114" />
+          <caret line="75" column="12" selection-start-line="75" selection-start-column="12" selection-end-line="75" selection-end-column="12" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/DrawingArea.java">
+    <entry file="file://$PROJECT_DIR$/src/CampusMap.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.55150217">
-          <caret line="100" column="0" selection-start-line="100" selection-start-column="0" selection-end-line="100" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.40236053">
+          <caret line="25" column="110" selection-start-line="25" selection-start-column="110" selection-end-line="25" selection-end-column="110" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

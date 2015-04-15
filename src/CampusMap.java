@@ -23,7 +23,7 @@ public class CampusMap
         JFrame frame = new JFrame();
         JFrame.setDefaultLookAndFeelDecorated(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        DrawingArea drawingArea = new DrawingArea(path, reducedMapping, reducedMappingInverse, DrawingArea.ST_PAIR);
+        DrawingArea drawingArea = new DrawingArea(path, reducedMapping, reducedMappingInverse, DrawingArea.NAV);
         frame.getContentPane().add(drawingArea, BorderLayout.CENTER);
         frame.setLocationRelativeTo(null);
         frame.setPreferredSize(new Dimension(275, 520));
