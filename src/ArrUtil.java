@@ -1,3 +1,5 @@
+import java.util.List;
+
 /**
  * Utility class for Array related operation.
  */
@@ -71,5 +73,14 @@ public class ArrUtil
                 cnt++;
         }
         return cnt;
+    }
+
+    public static int[] IntegerList2IntArray(List<Integer> list)
+    {
+        int[] arr = new int[list.size()];
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = list.get(i);
+        }
+        return arr;
     }
 }

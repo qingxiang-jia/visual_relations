@@ -22,7 +22,7 @@ public class SRExtractorPixel
     int[][] img;
 
     /**
-     * stores spacial relationships. e.g. north[1][3] is "North of 1 is 3".
+     * stores spacial relationships. numOfNodes.g. north[1][3] is "North of 1 is 3".
      */
     boolean[][][] north, south, west, east, near;
 

@@ -12,7 +12,7 @@ import java.util.Set;
  * Each building only gets a subset of the features to be identified
  * visually on the map. To make the code neat, all 34 features are
  * grouped into 11 groups from A to K by implementation similarity
- * and difficulty, i.e., A is the easiest to implement and K is the
+ * and difficulty, i.numOfNodes., A is the easiest to implement and K is the
  * hardest to implement. Yes, we can use feature vector, but since
  * the features are rather sparse, I chose to use Set instead.
  */
@@ -132,7 +132,7 @@ public class FeatureExtractor
         int h = cMax[building] - cMin[building];
         int v = rMax[building] - rMin[building];
         float hvRatio = h / (float) v;
-        if (hvRatio < 0.8) // ignoring non-obvious hvRatio, i.e., [0.8, 1.3]
+        if (hvRatio < 0.8) // ignoring non-obvious hvRatio, i.numOfNodes., [0.8, 1.3]
             feature[5].add(building);
         else if (hvRatio > 1.3)
             feature[6].add(building);
@@ -510,7 +510,7 @@ public class FeatureExtractor
      *
      * @param building Algorithm: having eight pin points spread evenly in the building image, and see which of them match.
      *                 a b c d
-     *                 e f g h
+     *                 numOfNodes f g h
      *                 i j k l
      *                 m n o p
      *                 8 points, map them onto the image and see how many (and which) of them match the image, so that we get
@@ -544,7 +544,7 @@ public class FeatureExtractor
         if (img[(int) (R + 0.9 * V)][(int) (C + 0.6 * H)] == id) o = true;
         if (img[(int) (R + 0.9 * V)][(int) (C + 0.8 * H)] == id) p = true;
         /** decide general shape **/
-        /** see if it's an upside down L shaped building: d, c, b, a, e, i, m must be true;
+        /** see if it's an upside down L shaped building: d, c, b, a, numOfNodes, i, m must be true;
          * g, h, k, l, o, p must be false; the rest are optional **/
         if ((d && c && b && a && e && i && m) && (!g && !h && !k && !l && !o && !p))
             feature[24].add(building);

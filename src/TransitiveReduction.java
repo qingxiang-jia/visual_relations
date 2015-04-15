@@ -1,5 +1,3 @@
-import java.util.Arrays;
-
 /**
  * Perform transitive reduction on four directional relationships + near.
  */
@@ -25,7 +23,6 @@ public class TransitiveReduction
                     }
     }
 
-//todo reduce near also!
     public static void main(String[] args)
     {
         /** deserialize directional relationships **/
@@ -33,16 +30,11 @@ public class TransitiveReduction
         boolean[][] south = (boolean[][]) IOUtil.deserialize("south.ser");
         boolean[][] west = (boolean[][]) IOUtil.deserialize("west.ser");
         boolean[][] east = (boolean[][]) IOUtil.deserialize("east.ser");
-        boolean[][] near = (boolean[][]) IOUtil.deserialize("near.ser");
 
         /** run reduction **/
-        System.out.println("north");
         TransitiveReduction.perform(north);
-        System.out.println("\n\nsouth");
         TransitiveReduction.perform(south);
-        System.out.println("\n\nwest");
         TransitiveReduction.perform(west);
-        System.out.println("\n\neast");
         TransitiveReduction.perform(east);
 
         /** serialize reduced results **/
@@ -52,7 +44,12 @@ public class TransitiveReduction
 //        IOUtil.serialize("eastReduced.ser", east);
 
         for(int i = 0; i < north.length; i++) {
-            System.out.println("building:" + i + " " + Arrays.toString(near[i]));
+            System.out.print("building:" + i + "   ");
+            for (int j = 0; j < north[i].length; j++) {
+                if (east[i][j])
+                    System.out.print(j + ",");
+            }
+            System.out.println();
         }
     }
 }
