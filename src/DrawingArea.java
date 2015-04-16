@@ -108,13 +108,13 @@ public class DrawingArea extends JPanel
         {
             x = e.getX();
             y = e.getY();
-            System.out.println(x + " " + y);
+            System.out.println(y + " " + x); // row col fashion
 
             if (mode == INDIVIDUAL_CLOUD) { // generates currCloud whenever user clicks
                 /** generate currCloud **/
                 currCloud = genCloud();
                 System.out.println(Arrays.toString(reducedMapping[y][x]));
-                System.out.println(LangGen.tellWhereShort(reducedMapping[y][x])); // inform the user "where"
+                System.out.println(LangGen.tellWhere(reducedMapping[y][x])); // inform the user "where"
 
                 if (currCloud == null)
                     System.out.println("no cloud for this pixel");

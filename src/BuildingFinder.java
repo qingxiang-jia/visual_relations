@@ -171,6 +171,17 @@ public class BuildingFinder
         ShowImg.show(image);
     }
 
+    public static void displayBuildingName(BufferedImage image, int[][] centroids)
+    {
+        Graphics2D g = image.createGraphics();
+        g.setColor(Color.RED);
+        /** for each building, display the its corresponding ID **/
+        for (int i = 0; i < centroids.length; i++) {
+            g.drawString(LangGen.buildingName[i], centroids[i][1] - 30, centroids[i][0]);
+        }
+        ShowImg.show(image);
+    }
+
     public static void main(String[] args)
     {
         /*
@@ -196,11 +207,12 @@ public class BuildingFinder
         int[][] MBRCoordinates = BuildingFinder.findMBR(img, 27); // find coordinates of MBR for each building
         int area[] = BuildingFinder.computeArea(img, MBRCoordinates); // compute area for each building (not MBR)
         int[][] centroids = BuildingFinder.computeCentroid(img, MBRCoordinates, area); // compute center of mass for each building
-        /** serialize all the results **/
-        IOUtil.serialize("img.ser", img);
-        IOUtil.serialize("MBRCoordinates.ser", MBRCoordinates);
-        IOUtil.serialize("area.ser", area);
-        IOUtil.serialize("centroids.ser", centroids);
-        System.out.println("Serialization done.");
+//        /** serialize all the results **/
+//        IOUtil.serialize("img.ser", img);
+//        IOUtil.serialize("MBRCoordinates.ser", MBRCoordinates);
+//        IOUtil.serialize("area.ser", area);
+//        IOUtil.serialize("centroids.ser", centroids);
+//        System.out.println("Serialization done.");
+        BuildingFinder.displayBuildingName(ImageReader.read("ass3-campus.png"), centroids);
     }
 }

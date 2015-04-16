@@ -10,15 +10,17 @@ import java.util.*;
 public class ShortestPath
 {
     boolean[][] north, south, west, east;
+    int[][] centroids;
     int[][][] paths; // the shortest paths: paths[src][tgt][nodes in between]
     int numOfNodes;
 
-    public ShortestPath(boolean[][] north, boolean[][] south, boolean[][] west, boolean[][] east)
+    public ShortestPath(boolean[][] north, boolean[][] south, boolean[][] west, boolean[][] east, int[][] centroids)
     {
         this.north = north;
         this.south = south;
         this.west = west;
         this.east = east;
+        this.centroids = centroids;
         numOfNodes = north.length;
         paths = new int[numOfNodes][numOfNodes][];
     }
@@ -132,14 +134,14 @@ public class ShortestPath
     }
 
     /**
-     * The cost between u and v. For this homework, all paths have equal cost.
+     * The cost between u and v. For this homework, length is the Euclidean distance of two buildings.
      * @param u
      * @param v
      * @return
      */
     private int length(int u, int v) //
     {
-        return 1;
+        return Compute.dist(centroids[u][0], centroids[u][1], centroids[v][0], centroids[v][1]);
     }
 
     public static void main(String[] args)
@@ -150,7 +152,9 @@ public class ShortestPath
         boolean[][] west = (boolean[][]) IOUtil.deserialize("westReduced.ser");
         boolean[][] east = (boolean[][]) IOUtil.deserialize("eastReduced.ser");
 
-        ShortestPath shortestPath = new ShortestPath(north, south, west, east);
+        int[][] centroids = (int[][]) IOUtil.deserialize("centroids.ser");
+
+        ShortestPath shortestPath = new ShortestPath(north, south, west, east, centroids);
         shortestPath.findPathForAll();
 
         /** serialize shortest paths **/
